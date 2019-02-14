@@ -1,15 +1,11 @@
 <template>
   <div>
-    <div class="header">This is page for test components</div>
-    <div class="body">
-      <cost-item>
-        <div class="fill" draggable="true"></div>
-      </cost-item>
-      <cost-item draggable></cost-item>
-      <cost-item draggable></cost-item>
-      <cost-item draggable :style="{backgroundColor: 'blue', border: '4px green solid'}"></cost-item>
-    </div>
-    <div class="footer"></div>
+    <cost-item>
+      <div class="fill" draggable="true"></div>
+    </cost-item>
+    <cost-item draggable></cost-item>
+    <cost-item draggable></cost-item>
+    <cost-item draggable :style="{backgroundColor: 'blue', border: '4px green solid'}"></cost-item>
   </div>
 </template>
 <script>
