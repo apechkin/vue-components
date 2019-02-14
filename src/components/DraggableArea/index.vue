@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dropdown"
+    class="drag-component"
     :class="computedStyle"
     :style="styles"
     :draggable="draggable"
@@ -8,9 +8,7 @@
     @mouseleave="onLeave"
     @click="onClick"
   >
-    <div class="text">
-      <slot></slot>
-    </div>
+  <slot></slot>
   </div>
 </template>
 
@@ -19,7 +17,7 @@ export default {
   props: {
     draggable: {
       type: Boolean,
-      default: false
+      default: true
     },
     styles: {
       type: Object,
@@ -62,19 +60,20 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../assets/mixins.scss";
-  .dropdown {
+  .drag-component {
     display: inline-block;
     position: relative;
     width: 127px;
     height: 48px;
     background-color: white;
-    padding-right: 16px;
     text-align: right;
+    margin: 1px .5px;
+    cursor: pointer;
   }
   .selected {
-    border: 2px solid $mango;
+    border: 2px solid $orange_5;
   }
   .entered {
-    border: 1px solid $dark-sky-blue;
+    border: 2px solid $blue_5;
   }
 </style>

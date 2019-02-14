@@ -17,7 +17,7 @@ $dark-sky-blue: #339af0;
 $dark-pastel-green: #40c057;
 $boring-green: #51cf66;
 $lightish-green: #69db7c;
-// blue
+// --blue
 $blue_0: #e7f5ff;
 $blue_1: #d0ebff;
 $blue_2: #a5d8ff;
@@ -61,7 +61,7 @@ $green_6: #40c057;
 $green_7: #37b24d;
 $green_8: #2f9e44;
 $green_9: #2b8a3e;
-
+// --yellow
 $yellow_0: #fff9db;
 $yellow_1: #fff3bf;
 $yellow_2: #ffec99;
@@ -72,7 +72,7 @@ $yellow_6: #fab005;
 $yellow_7: #f59f00;
 $yellow_8: #f08c00;
 $yellow_9: #e67700;
-//--orange
+// --orange
 $orange_0: #fff4e6;
 $orange_1: #ffe8cc;
 $orange_2: #ffd8a8;
@@ -101,3 +101,11 @@ $larger: 1.25em;
 $border-color: #b2b2b2;
 $border-grey-light: #eeeeee;
 $gray: #697178;
+
+@mixin clearfix {
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
+  }

@@ -1,7 +1,7 @@
 
 import Vue from 'vue'
 const Home = Vue.component('asyncComponent',
-  () => import('../components/Page/Home'))
+  () => import('../pages/Home/index.vue'))
 
 export default [
   {

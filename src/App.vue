@@ -8,9 +8,9 @@
   </div>
 </template>
 <script>
-import LHeader from './components/Layout/Header'
-import LFooter from './components/Layout/Footer'
-import LContent from './components/Layout/Content'
+import LHeader from './pages/Layout/Header'
+import LFooter from './pages/Layout/Footer'
+import LContent from './pages/Layout/Content'
 export default {
   components: {
     LHeader,

@@ -1,0 +1,33 @@
+<template>
+<div class="home-block">
+  <div class="left-block">
+    Links
+  </div>
+  <div class="center-block">
+    <Content/>
+  </div>
+</div>
+</template>
+<script>
+import Content from '../Content'
+export default {
+  props: {},
+  components: {
+    Content: Content
+  }
+}
+</script>
+<style lang="scss" scoped>
+.home-block {
+  display: flex;
+  position: relative;
+}
+.left-block {
+  display: inline-flex;
+  width: 25vw;
+}
+.center-block {
+  display: inline-flex;
+  width: 70vw;
+}
+</style>
