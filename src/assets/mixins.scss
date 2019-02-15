@@ -98,6 +98,7 @@ $smaller: 0.75em;
 $large: 1.125em;
 $larger: 1.25em;
 
+
 $border-color: #b2b2b2;
 $border-grey-light: #eeeeee;
 $gray: #697178;
@@ -109,3 +110,11 @@ $gray: #697178;
       content: '';
     }
   }
+
+@function calcSize($parent, $child) {
+  @if $child {
+    @return $parent - $child;
+  } @else {
+    @return $parent
+  }
+}

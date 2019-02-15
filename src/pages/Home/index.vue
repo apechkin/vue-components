@@ -1,21 +1,21 @@
 <template>
-<div class="home-block">
-  <div class="left-block">
-    Links
+  <div class="home-block">
+    <div class="left-block">
+      Links
+    </div>
+    <div class="center-block">
+      <Content/>
+    </div>
   </div>
-  <div class="center-block">
-    <Content/>
-  </div>
-</div>
 </template>
 <script>
-import Content from '../Content'
-export default {
-  props: {},
-  components: {
-    Content: Content
+  import Content from '../Content'
+  export default {
+    props: {},
+    components: {
+      Content: Content
+    }
   }
-}
 </script>
 <style lang="scss" scoped>
 .home-block {
