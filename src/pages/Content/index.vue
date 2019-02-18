@@ -65,23 +65,23 @@
 </template>
 
 <script>
-  import EdragInput from '~/containers/EDragInput/index.vue'
-  import dragBlock from '@/RDraggableArea/index.vue'
-  import RootInput from '@/RInput/index.vue'
-  export default {
-    props: {},
-    components: {
-      EdragInput,
-      RootInput,
-      dragBlock
-    },
-    data () {
-      return {
-        dragBlockStyle: { border: `1px #ced4da solid` }
-      }
-    },
-    mounted () {
-      /*
+import EdragInput from '~/containers/EDragInput/index.vue'
+import dragBlock from '@/RDraggableArea/index.vue'
+import RootInput from '@/RInput/index.vue'
+export default {
+  props: {},
+  components: {
+    EdragInput,
+    RootInput,
+    dragBlock
+  },
+  data () {
+    return {
+      dragBlockStyle: { border: `1px #ced4da solid` }
+    }
+  },
+  mounted () {
+    /*
       let fcBody = document.querySelector('.fix-column > .tbody')
       let rcBody = document.querySelector('.rest-columns > .tbody')
       let rcHead = document.querySelector('.rest-columns > .thead')
@@ -90,10 +90,10 @@
         fcBody.scrollTop = this.scrollTop
       }, { passive: true })
       */
-    },
-    methods: {
-    }
+  },
+  methods: {
   }
+}
 </script>
 <style lang="scss" scoped>
 @import "../../assets/mixins.scss";
