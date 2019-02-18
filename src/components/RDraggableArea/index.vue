@@ -22,6 +22,10 @@
       styles: {
         type: Object,
         default: () => ({})
+      },
+      editMode: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -46,16 +50,12 @@
         return this.entered
       },
       computedStyle () {
-        const { entered, selected } = this
-        if (entered && selected) {
-          return {
-            'selected': selected
-          }
-        } else if (entered && !selected) {
-          return { 'entered': entered }
-        } else if (!entered && selected) {
-          return { 'selected': selected }
-        } else return false
+        const { entered, selected, editMode } = this
+        return {
+          'entered': entered,
+          'selected': selected,
+          'edited': editMode
+        }
       }
     }
   }
@@ -79,5 +79,8 @@
   }
   .entered {
     border: 2px solid $blue_5;
+  }
+  .edited {
+    border: 2px solid $orange_5;
   }
 </style>

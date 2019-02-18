@@ -1,0 +1,16 @@
+.df-aicenter {
+  display: flex;
+  align-items: center;
+}
+.df-center-jcend {
+  @extend .df-aicenter;
+  justify-content: flex-end;
+}
+.df-center-jcstart {
+  @extend .df-aicenter;
+  justify-content: flex-start;
+}
+.df-center-jccenter {
+  @extend .df-aicenter;
+  justify-content: center;
+}

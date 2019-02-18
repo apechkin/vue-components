@@ -34,11 +34,62 @@
     },
     "extends": [
       "plugin:vue/essential",
+      "eslint:recommended",
       "@vue/standard"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    }
+    },
+    "rules": {
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "warn",
+            "error",
+            "log"
+          ]
+        }
+      ],
+      "no-empty": [
+        "error",
+        {
+          "allowEmptyCatch": true
+        }
+      ],
+      "space-before-function-paren": [
+        "error",
+        "always"
+      ],
+      "semi": [
+        "error",
+        "never"
+      ],
+      "vue/no-side-effects-in-computed-properties": true,
+      "vue/script-indent": [
+        "error",
+        2,
+        {
+          "switchCase": 1,
+          "baseIndent": 1
+        }
+      ],
+      "vue/html-indent": [
+        "error",
+        2
+      ],
+      "vue/html-self-closing": "error"
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.vue"
+        ],
+        "rules": {
+          "indent": "off"
+        }
+      }
+    ]
   },
   "postcss": {
     "plugins": {

@@ -1,12 +1,19 @@
 <template>
-  <rdrag-block>
+  <rdrag-block :editMode="editMode">
     <template v-slot="{ entered }">
       <r-input
+        :editMode="editMode"
         :type="type"
         :entered="entered"
-        :value="value">
+        :value="componentValue"
+        @change="handleChangeValue"
+      >
         <template v-slot:edit-icon>
-          <i class="fas fa-pencil-alt"/>
+          <redit-icon
+            :editMode="editMode"
+            @accept="handleAccept"
+            @edit="handleEdit"
+          />
         </template>
         <template v-slot:currency-icon>
           {{computeCurrency}}
@@ -19,10 +26,12 @@
 <script>
   import RdragBlock from '@/RDraggableArea/index.vue'
   import RInput from '@/RInput/index.vue'
+  import ReditIcon from '@/REditIcon/index.vue'
   export default {
     components: {
       RdragBlock,
-      RInput
+      RInput,
+      ReditIcon
     },
     props: {
       currency: [String],
@@ -43,7 +52,32 @@
           2: '₽',
           3: '€',
           4: '£'
+        },
+        editMode: false,
+        componentValue: this.value
+      }
+    },
+    methods: {
+      handleEdit () {
+        this.editMode = true
+      },
+      handleAccept (action) {
+        this.editMode = false
+        const { value } = this
+        switch (action) {
+          case 'confirm':
+            this.$emit('accepted', { status: 'changed', value: this.componentValue })
+            break
+          case 'cancel':
+            this.componentValue = value
+            this.$emit('accepted', { status: 'nonChanged', value: this.componentValue })
+            break
+          default:
+            break
         }
+      },
+      handleChangeValue (val) {
+        this.componentValue = val
       }
     },
     computed: {

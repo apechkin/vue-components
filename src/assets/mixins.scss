@@ -97,6 +97,8 @@ $small: 0.875em;
 $smaller: 0.75em;
 $large: 1.125em;
 $larger: 1.25em;
+$big: 1.375em;
+$bigger: 1.5em;
 
 
 $border-color: #b2b2b2;
@@ -110,6 +112,14 @@ $gray: #697178;
       content: '';
     }
   }
+
+@mixin create-flex($display, $jc: center, $ai: stretch, $fd: column, $fw: nowrap) {
+  display: $display;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $fd;
+  flex-wrap: $fw;
+}
 
 @function calcSize($parent, $child) {
   @if $child {

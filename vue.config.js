@@ -12,8 +12,9 @@ module.exports = {
     resolve: {
       extensions: ['.js', '.vue', '.json'],
       alias: {
-        '~': require('path').resolve(__dirname, 'src/pages'),
-        '@': require('path').resolve(__dirname, 'src/components')
+        '~': require('path').resolve(__dirname, 'src'),
+        '@': require('path').resolve(__dirname, 'src/components'),
+        '#': require('path').resolve(__dirname, 'src/containers')
       }
     }
   }

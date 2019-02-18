@@ -1,17 +1,19 @@
 <template>
   <div class="box">
-    <div class="box-edit-icon" :class="{'entered': entered}">
+    <div class="box-action-icon" :class="{'entered': entered, 'edit': editMode}">
       <slot name="edit-icon" />
     </div>
     <input
+      ref="input"
+      v-show="editMode"
       class="box-input"
       :type="type"
       :placeholder="placeholder"
       :name="name"
       v-model="proxy"
-      @change="update"
       :step="steps"
     >
+    <div class="box-fake" v-show="!editMode">{{fakeValue}}</div>
     <div class="box-currency">
       <slot name="currency-icon" />
     </div>
@@ -23,7 +25,7 @@
     props: {
       type: {
         type: String,
-        default: 'text'
+        default: 'number'
       },
       placeholder: {
         type: String,
@@ -33,7 +35,15 @@
       value: [String, Number],
       entered: Boolean,
       roundRate: [Number, String],
-      step: String
+      step: String,
+      focused: {
+        type: Boolean,
+        default: false
+      },
+      editMode: {
+        type: Boolean,
+        default: false
+      }
     },
     data () {
       return {
@@ -44,18 +54,13 @@
     created () {
       this.localValue = this.value
     },
-    methods: {
-      update () {
-        this.$emit('change', this.proxy)
-      },
-      changeHandler (e) {
-        if (this.roundRate) {
-          this.$emit('input', parseFloat(e.target.value).toFixed(this.roundRate))
-          this.localValue = e.target.value
-        } else {
-          this.$emit('input', parseFloat(e.target.value).toFixed(2))
-          this.localValue = e.target.value
-        }
+    updated () {
+      if (this.editMode) {
+        this.$nextTick(() => {
+          this.$refs['input'].focus()
+        })
+      } else {
+        this.proxy = this.value
       }
     },
     computed: {
@@ -63,12 +68,15 @@
         if (this.roundRate) return parseFloat(this.value).toFixed(this.roundRate)
         return parseFloat(this.value).toFixed(2)
       },
-      val () {
-        if (this.value === '-') return this.value
-        return this.value
-          ? this.roundRate ? Number(this.value).toFixed(this.int ? 0 : this.roundRate).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
-            : Number(this.value).toFixed(this.int ? 0 : 2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
-          : null
+      fakeValue () {
+        const { proxy, type } = this
+        if (proxy && type === 'number') return String(proxy).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+        else return proxy
+      }
+    },
+    watch: {
+      proxy: function (val) {
+        this.$emit('change', val)
       }
     }
   }
@@ -76,29 +84,30 @@
 
 <style lang="scss" scoped>
   @import "../../assets/mixins.scss";
+  @import "../../assets/style.scss";
   $parentWidth: 128px;
   $parentHeight: 46px;
-  $editIconWidth: 20px;
-  $currencyIcon: 16px;
+  $editIconWidth: 30px;
+  $currencyIcon: 20px;
+  $actionIncons: 40px;
   .box {
     position: relative;
     width: $parentWidth;
     height: 100%;
     display: flex;
   }
-  .box-edit-icon {
-    float: left;
+  .box-action-icon {
+    position: absolute;
+    top: 0;
+    left: 2px;
     width: $editIconWidth;
     height: 100%;
     font-size: 12px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     color: $gray_5;
     opacity: 0;
-  }
-  .entered {
-    opacity: 1;
   }
   .box-input {
     border: none;
@@ -113,7 +122,7 @@
     letter-spacing: normal;
     text-align: right;
     color: $charcoal-grey;
-    width: calcSize($parentWidth, ($editIconWidth + $currencyIcon));
+    width: 100%;
     height: calcSize($parentHeight, 0px);
     transition: 0.4s;
     line-height: 25px;
@@ -129,4 +138,27 @@
     align-items: center;
     color: $gray_5;
   }
+  .box-fake {
+    @extend .df-center-jcend ;
+    font-size: 12px;
+    width: calcSize($parentWidth, $currencyIcon);
+  }
+  .entered {
+    opacity: 1;
+  }
+  .edit {
+    opacity: 1;
+    width: $actionIncons;
+  }
+
+  input[type=number] {
+    -moz-appearance:textfield;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type=number]{
+  -moz-appearance:textfield;
+}
 </style>

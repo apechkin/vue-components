@@ -1,11 +1,13 @@
 <template>
   <div class="container">
     <h3>Draggable elements with draggable block</h3>
-    <edrag-input value="5000" type="number" currency="RUR"/>
-    <edrag-input value="155000" currency="USD"/>
-    <edrag-input value="255000" type="number" currency="EURO"/>
-    <edrag-input value="6545000" currency="GBP"/>
-    <edrag-input />
+    <div class="d-flex flex-row">
+      <edrag-input
+        v-for="item in items" :key="item.id"
+        :value="item.value"
+        @accepted="data => {handleAccept(data, item.id)}"
+        currency="RUR"/>
+    </div>
     <!--
     <div class="total-wrapper">
       <div class="fix-column">
@@ -48,36 +50,47 @@
       </div>
     </div>
     -->
-    <div class="d-flex flex-row">
-      <dragBlock>
-        <div class="drag-orange" />
-      </dragBlock>
-      <dragBlock>5000</dragBlock>
-      <dragBlock/>
-      <dragBlock/>
-      <dragBlock/>
+    <div class="row">
+      <input type="button" value="checkState" @click="checkState">
     </div>
-    <div class="row"/>
-    <div class="row"/>
-    <div class="row"/>
-    <div class="row"/>
   </div>
 </template>
 
 <script>
   import EdragInput from '~/containers/EDragInput/index.vue'
-  import dragBlock from '@/RDraggableArea/index.vue'
-  import RootInput from '@/RInput/index.vue'
   export default {
     props: {},
     components: {
-      EdragInput,
-      RootInput,
-      dragBlock
+      EdragInput
     },
     data () {
       return {
-        dragBlockStyle: { border: `1px #ced4da solid` }
+        items: [
+          {
+            id: 1,
+            value: 15000
+          },
+          {
+            id: 2,
+            value: 25000
+          },
+          {
+            id: 3,
+            value: 35000
+          },
+          {
+            id: 4,
+            value: 45000
+          },
+          {
+            id: 5,
+            value: 55000
+          },
+          {
+            id: 6,
+            value: 65000
+          }
+        ]
       }
     },
     mounted () {
@@ -92,6 +105,17 @@
       */
     },
     methods: {
+      checkState (e) {
+        e.preventDefault()
+      },
+      handleAccept (data, id) {
+        const { status, value } = data
+        if (status === 'changed') {
+          this.initialState['items'] = this.initialState['items'].map(item => {
+            return item.id === id ? { ...item, ...{ value: value } } : item
+          })
+        }
+      }
     }
   }
 </script>
