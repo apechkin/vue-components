@@ -9,13 +9,13 @@
   </div>
 </template>
 <script>
-import Content from '../Content'
-export default {
-  props: {},
-  components: {
-    Content: Content
+  import Content from '../Content'
+  export default {
+    props: {},
+    components: {
+      Content: Content
+    }
   }
-}
 </script>
 <style lang="scss" scoped>
 .home-block {

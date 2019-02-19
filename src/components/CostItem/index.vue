@@ -1,21 +1,21 @@
 <template>
   <div class="item" :style="styles" :draggable="draggable">
-    <slot></slot>
+    <slot/>
   </div>
 </template>
 <script>
-export default {
-  props: {
-    draggable: {
-      type: Boolean,
-      default: false
-    },
-    styles: {
-      type: Object,
-      default: () => ({})
+  export default {
+    props: {
+      draggable: {
+        type: Boolean,
+        default: false
+      },
+      styles: {
+        type: Object,
+        default: () => ({})
+      }
     }
   }
-}
 </script>
 <style lang="scss" scoped>
   .item {
