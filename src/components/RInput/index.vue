@@ -51,9 +51,6 @@
         steps: this.step || '0.01'
       }
     },
-    created () {
-      this.localValue = this.value
-    },
     updated () {
       if (this.editMode) {
         this.$nextTick(() => {
