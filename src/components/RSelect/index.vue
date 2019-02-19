@@ -3,6 +3,8 @@
     class="r-select"
     @click.stop="toggleOpen($event)"
     :style="{ width: width }"
+    @mouseover="handleMouseOver"
+    @mouseout="handleMouseOut"
   >
     <div class="label">{{ selectedLabel }}</div>
     <span/>
@@ -55,8 +57,15 @@
       if (option) selectedLabel = option.label
       return {
         selectOpen: this.open,
-        selectedLabel
+        selectedLabel,
+        mouseOver: false
       }
+    },
+    mounted () {
+      document.addEventListener('click', this.handleClick, false)
+    },
+    beforeDestroy () {
+      document.removeEventListener('click', this.handleClick, false)
     },
     methods: {
       onChange ({ label, value }) {
@@ -65,6 +74,17 @@
       },
       toggleOpen () {
         this.selectOpen = !this.selectOpen
+      },
+      handleMouseOver () {
+        this.mouseOver = true
+      },
+      handleMouseOut () {
+        this.mouseOver = false
+      },
+      handleClick (e) {
+        if (!this.mouseOver) {
+          this.selectOpen = false
+        }
       }
     }
   }
@@ -74,11 +94,6 @@
   @import "../../assets/mixins.scss";
   @import "../../assets/style.scss";
   $height: 32px;
-.dropdown {
-  user-select: none;
-  position: relative;
-  display: inline-block;
-}
 .r-select {
   position: relative;
   display: inline-block;
@@ -140,6 +155,12 @@
     text-align: left;
     z-index: 1;
     color: $blue_5;
+    li:first-child {
+      border-radius: 5px 5px 0 0;
+    }
+    li:last-child {
+      border-radius: 0 0 5px 5px;
+    }
   }
   .list-item {
     display: flex;
