@@ -13,9 +13,17 @@
         @accepted="data => {handleAccept(data, item.id)}"
         currency="RUR"/>
     </div>
+    <hr>
     <div class="row">
       123
     </div>
+    <hr>
+    <r-select
+      :options="listOptions"
+      v-model="selectedOption2"
+      label="weeks"
+      @change="handleWeekOption"
+    />
     <!--
     <div class="total-wrapper">
       <div class="fix-column">
@@ -66,10 +74,12 @@
 
 <script>
   import EdragInput from '~/containers/EDragInput/index.vue'
+  import RSelect from '@/RSelect'
   export default {
     props: {},
     components: {
-      EdragInput
+      EdragInput,
+      RSelect
     },
     data () {
       return {
@@ -98,7 +108,18 @@
             id: 6,
             value: 65000
           }
-        ]
+        ],
+        selectedOption2: 'subscribe',
+        listOptions: [{
+          label: 'Weeks',
+          value: 'weeks'
+        }, {
+          label: 'Months',
+          value: 'months'
+        }, {
+          label: 'Years',
+          value: 'years'
+        }]
       }
     },
     mounted () {
@@ -123,6 +144,9 @@
             return item.id === id ? { ...item, ...{ value: value } } : item
           })
         }
+      },
+      handleWeekOption (val) {
+        console.log(val)
       }
     }
   }
