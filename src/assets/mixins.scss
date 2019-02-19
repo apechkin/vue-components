@@ -121,6 +121,12 @@ $gray: #697178;
   flex-wrap: $fw;
 }
 
+@mixin ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 @function calcSize($parent, $child) {
   @if $child {
     @return $parent - $child;
