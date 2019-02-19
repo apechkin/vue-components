@@ -75,7 +75,7 @@
     border: 2px solid transparent;
   }
   .selected {
-    border: 2px solid $orange_5;
+    border: 2px solid $orange_5!important;
   }
   .entered {
     border: 2px solid $blue_5;

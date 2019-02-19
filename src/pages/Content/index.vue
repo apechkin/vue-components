@@ -1,12 +1,20 @@
 <template>
   <div class="container">
     <h3>Draggable elements with draggable block</h3>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row flex-wrap">
       <edrag-input
         v-for="item in items" :key="item.id"
         :value="item.value"
         @accepted="data => {handleAccept(data, item.id)}"
         currency="RUR"/>
+      <edrag-input
+        v-for="item in items" :key="`ne_${item.id}`"
+        :value="item.value"
+        @accepted="data => {handleAccept(data, item.id)}"
+        currency="RUR"/>
+    </div>
+    <div class="row">
+      123
     </div>
     <!--
     <div class="total-wrapper">

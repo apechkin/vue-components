@@ -27,7 +27,7 @@
   width: 25vw;
 }
 .center-block {
-  display: inline-flex;
-  width: 70vw;
+  display: flex;
+  width: 100%;
 }
 </style>
