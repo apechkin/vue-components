@@ -4,7 +4,7 @@
     <l-content>
       <router-view/>
     </l-content>
-    <l-footer />
+    <!-- <l-footer /> -->
   </div>
 </template>
 <script>

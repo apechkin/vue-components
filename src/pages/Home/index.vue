@@ -1,8 +1,5 @@
 <template>
   <div class="home-block">
-    <div class="left-block">
-      Links
-    </div>
     <div class="center-block">
       <Content/>
     </div>
@@ -24,7 +21,7 @@
 }
 .left-block {
   display: inline-flex;
-  width: 25vw;
+  //width: 25vw;
 }
 .center-block {
   display: flex;
