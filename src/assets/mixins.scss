@@ -131,6 +131,10 @@ $gray: #697178;
   @if $child {
     @return $parent - $child;
   } @else {
-    @return $parent
+    @return $parent;
   }
+}
+
+@function calcBlockHeight($parent, $div) {
+  @return $parent / $div;
 }

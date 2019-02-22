@@ -25,10 +25,14 @@
       @change="handleWeekOption"
     />
     <hr>
-    <rfixed-table/>
-    <div class="row">
-      <input type="button" value="checkState" @click="checkState">
-    </div>
+    <rfixed-table>
+      <template v-slot:header>
+        <div>123</div>
+      </template>
+      <template v-slot:values>
+        <div>321</div>
+      </template>
+    </rfixed-table>
   </div>
 </template>
 

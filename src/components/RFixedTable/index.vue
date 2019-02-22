@@ -1,19 +1,267 @@
 <template>
-  <div class="r-table">
-    <div class="fixed-column">
-      <div class="column-group">
-        <div class="column-info">
-          <span class="cost-element left">Cost item groups</span>
-          <span class="cost-element right">Total</span>
+  <div class="test">
+    <div class="r-table">
+      <div class="fixed-column">
+        <div class="column-group">
+          <div class="fixed-column-info">
+            <span class="cost-element left">Cost item groups</span>
+            <span class="cost-element right">Total</span>
+          </div>
+          <div class="fixed-column-info">
+            <span class="ligth">PAYMENT FROM THE CLIENT</span>
+          </div>
         </div>
-        <div class="column-info">
-          <span class="ligth">PAYMENT FROM THE CLIENT</span>
+        <div class="column-body"/>
+      </div>
+      <div class="rested-column">
+        <div class="column-group">
+          <div class="rested-column-filter">
+            <div class="rested-column-filter-header">
+              <LabelComponent value="week 5, 29 January" isHeader/>
+              <LabelComponent isHeader />
+              <LabelComponent isHeader />
+              <LabelComponent isHeader />
+              <LabelComponent isHeader />
+              <LabelComponent isHeader value="week 6, 5 February"/>
+            <!-- <slot name="header" /> -->
+            </div>
+            <div class="rested-column-filter-values">
+              <!-- <slot name="values" /> -->
+              <div class="wrapper-box">
+                <LabelComponent value="29"/>
+              </div>
+              <div class="wrapper-box">
+                <LabelComponent value="30"/>
+              </div>
+              <div class="wrapper-box">
+                <LabelComponent value="31"/>
+              </div>
+              <div class="wrapper-box">
+                <LabelComponent value="1"/>
+              </div>
+              <div class="wrapper-box">
+                <LabelComponent value="2"/>
+              </div>
+              <div class="wrapper-box">
+                <LabelComponent value="3"/>
+              </div>
+              <div class="wrapper-box">
+                <LabelComponent value="4"/>
+              </div>
+              <div class="wrapper-box">
+                <LabelComponent value="5"/>
+              </div>
+              <div class="wrapper-box">
+                <LabelComponent value="6"/>
+              </div>
+            </div>
+          </div>
+          <div class="rested-column-totals">
+            <!-- <slot name="totals" /> -->
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+            <div class="wrapper-box">
+              <r-input :editMode="false" value="1245125" white bbox />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="column-body"/>
     </div>
-    <div class="rested-column">2</div>
     <div class="row">
+      <!-- CSS Code: Place this code in the document's head (between the 'head' tags) -->
+      <!-- HTML Code: Place this code in the document's body (between the 'body' tags) where the table should appear -->
+      <div class="ct">
+        <table class="GeneratedTable">
+          <thead>
+            <tr>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+            </tr>
+            <tr>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+            </tr>
+            <tr>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+            </tr>
+            <tr>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+            </tr>
+            <tr>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+            </tr>
+            <tr>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+            </tr>
+            <tr>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <!--
       <div class="fix-column">
         <div class="thead">
           <div>Cost item groups</div>
@@ -53,13 +301,20 @@
           </div>
         </div>
       </div>
+    -->
     </div>
   </div>
 </template>
 
 <script>
+  import LabelComponent from './label.vue'
+  import RInput from '../RInput/index.vue'
   export default {
     props: {},
+    components: {
+      LabelComponent,
+      RInput
+    },
     data () {
       return {}
     },
@@ -78,10 +333,24 @@
 <style lang="scss" scoped>
 @import "../../assets/mixins.scss";
 $blockHeight: 62px;
+$headerBlock: 122px;
+.ct {
+  width: 550px;
+  height: 150px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.inline {
+  display: inline-block;
+  min-width: 128px;
+  height: 100%;
+}
 .r-table {
+  display: flex;
   position: relative;
   width: 100%;
-  font-family: 'Roboto'
+  font-family: 'Roboto';
+  border-top: 1px solid $gray_4;
 }
 .fixed-column {
   position: relative;
@@ -89,19 +358,34 @@ $blockHeight: 62px;
 }
 .column-group {
   position: relative;
-  height: 136px;
+  height: $headerBlock;
 }
-.column-info {
+.fixed-column-info {
   position: relative;
-  height: $blockHeight;
+  height: calcBlockHeight($headerBlock, 2);
   border-bottom: 2px solid $gray_5;
 }
 .column-body {
   position: relative;
 }
 .rested-column {
+  position: relative;
   width: 100%;
-  border: 1px solid goldenrod;
+}
+.rested-column-info {
+  position: relative;
+  width: 100%;
+  height: calcBlockHeight($headerBlock, 2);
+}
+.rested-column-filter, .rested-column-totals {
+  position: relative;
+  width: 100%;
+  height: calcBlockHeight($headerBlock, 2);
+  margin-left: 5px;
+}
+.rested-column-filter-header, .rested-column-filter-values {
+  width: 100%;
+  height: calcBlockHeight($headerBlock, 4);
 }
 .cost-element {
   font-weight: 700;
@@ -110,7 +394,7 @@ $blockHeight: 62px;
   font-style:normal;
   font-weight:700;
   color: $gray_6;
-  top: calc(#{$blockHeight} / 2 - 16px);
+  top: calc(#{calcBlockHeight($headerBlock, 2)} / 2 - 16px);
 }
 .left {
   position: absolute;
@@ -123,9 +407,13 @@ $blockHeight: 62px;
 .ligth {
   position: absolute;
   left: 0;
-  top: calc(#{$blockHeight} / 2 - 12px);
+  top: calc(#{calcBlockHeight($headerBlock, 2)} / 2 - 12px);
   font-size: 12px;
   color: $gray_6;
+}
+.wrapper-box {
+  display: inline-block;
+  height: 100%;
 }
 //==================
 .fix-column {
@@ -173,6 +461,15 @@ $blockHeight: 62px;
     margin-top: 0px;
 }
 
+.rested-column {
+  width: 500px;
+}
+
+.rested-column > .column-group {
+    //padding-right: 50px;
+    overflow: hidden;
+}
+
 .rest-columns {
     width: 350px;
 }
@@ -186,5 +483,27 @@ $blockHeight: 62px;
     margin-left: -50px;
 }
 .rest-columns > .thead > :first-child {margin-left: 0px;}
+
+        table.GeneratedTable {
+        width: 100%;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-width: 2px;
+        border-color: #ffcc00;
+        border-style: solid;
+        color: #000000;
+        }
+
+        table.GeneratedTable td, table.GeneratedTable th {
+        border-width: 2px;
+        border-color: #ffcc00;
+        border-style: solid;
+        padding: 3px;
+        width: 100px;
+        }
+
+        table.GeneratedTable thead {
+        background-color: #ffcc00;
+        }
 
 </style>

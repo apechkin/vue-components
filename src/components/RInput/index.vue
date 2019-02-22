@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" :class="computedStyle">
     <div class="box-action-icon" :class="{'entered': entered, 'edit': editMode}">
       <slot name="edit-icon" />
     </div>
@@ -43,6 +43,14 @@
       editMode: {
         type: Boolean,
         default: false
+      },
+      white: {
+        type: Boolean,
+        default: false
+      },
+      bbox: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -69,6 +77,13 @@
         const { proxy, type } = this
         if (proxy && type === 'number') return String(proxy).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
         else return proxy
+      },
+      computedStyle () {
+        const { white, bbox } = this
+        return {
+          'bg-white': white,
+          'b-box': bbox
+        }
       }
     },
     watch: {
@@ -147,7 +162,15 @@
     opacity: 1;
     width: $actionIncons;
   }
-
+  .bg-white {
+    background-color: white;
+    border-radius: 5px;
+  }
+  .b-box {
+    box-sizing: border-box;
+    border-right: 1px solid $gray_3;
+    border-top: 5px solid $gray_3;
+  }
   input[type=number] {
     -moz-appearance:textfield;
   }
