@@ -20,19 +20,14 @@
     <hr>
     <r-select
       :options="listOptions"
-      v-model="selectedOption2"
+      v-model="selectedOption"
       label="weeks"
       @change="handleWeekOption"
     />
+    <!-- <rfixed-table/> -->
     <hr>
-    <rfixed-table>
-      <template v-slot:header>
-        <div>123</div>
-      </template>
-      <template v-slot:values>
-        <div>321</div>
-      </template>
-    </rfixed-table>
+    <r-header ref="headerTable" width="100%" :userData="dates"/>
+    <r-income  width="100%" :userData="dates" :com="computedData"/>
   </div>
 </template>
 
@@ -42,15 +37,32 @@
   import { calendar, costItems } from './fakeData.js'
   import { filterByWeek, filterByMonth, filterByYear } from '~/helpers/dateFilters.js'
   import RfixedTable from '@/RFixedTable'
+  import RHeader from '@/RFixedTable/header'
+  import RIncome from '@/RFixedTable/income'
   export default {
+    directives: {
+      scroll: {
+        inserted: function (el, binding) {
+          let f = function (evt) {
+            if (binding.value(evt, el)) {
+              window.removeEventListener('scroll', f)
+            }
+          }
+          window.addEventListener('scroll', f)
+        }
+      }
+    },
     props: {},
     components: {
       EdragInput,
       RSelect,
-      RfixedTable
+      RfixedTable,
+      RHeader,
+      RIncome
     },
     data () {
       return {
+        dates: [29, 30, 31, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         items: [
           {
             id: 1,
@@ -77,7 +89,7 @@
             value: 65000
           }
         ],
-        selectedOption2: 'subscribe',
+        selectedOption: 'weeks',
         listOptions: [{
           label: 'Weeks',
           value: 'weeks'
@@ -90,7 +102,20 @@
         }]
       }
     },
+    mounted () {
+      /*
+      const headerTable = this.$refs.headerTable.$refs.header
+      const contentTable = this.$refs.contentTable.$refs.content
+      contentTable.addEventListener('scroll', function () {
+        headerTable.scrollLeft = this.scrollLeft
+        headerTable.scrollTop = this.scrollTop
+      }, { passive: true })
+      */
+    },
     methods: {
+      hadleScroll (e) {
+        console.log(e)
+      },
       checkState (e) {
         e.preventDefault()
       },
@@ -104,6 +129,28 @@
       },
       handleWeekOption (val) {
         console.log(val)
+        this.selectedOption = val
+      }
+    },
+    computed: {
+      computedData () {
+        const { selectedOption } = this
+        let data = []
+        switch (selectedOption) {
+          case 'weeks':
+            data = filterByWeek(calendar())
+            break
+          case 'months':
+            data = filterByMonth(calendar())
+            break
+          case 'years':
+            data = filterByYear(calendar())
+            break
+          default:
+            break
+        }
+        console.log(data)
+        return data
       }
     }
   }

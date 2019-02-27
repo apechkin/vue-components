@@ -1,31 +1,23 @@
-const currentDay = (day) => {
-  // если из базы пришло начальное значение дня недели
-  if (typeof day === 'string' && day.length === 8) {
-    return day.slice(0, 2)
-  } else {
-    // в базе нет дня недели, берем текущий день
-    return day.getDate() < 10 ? `0${day.getDate()}` : `${day.getDate()}`
-  }
-}
-
-const getWeek = (day) => {
-  let onejan = new Date(new Date().getFullYear())
-  return Math.ceil((((new Date() - onejan) / 86400000) + onejan.getDay() + 1) / 7)
-}
-
-// получаем в качестве параметра день недели
-function getMonth (day = new Date()) {
-  console.log(typeof currentDay(day))
-}
-
-function DatePeeker () {
+function DatePicker () {
   this.value = null
+  this.unique = null
 }
-DatePeeker.prototype.setValue = function (value) {
+DatePicker.prototype.setValue = function (value) {
   if (!this.value) this.value = value
+  return this
 }
-DatePeeker.prototype.getValue = function () {
+DatePicker.prototype.getValue = function () {
   return this.value
+}
+DatePicker.prototype.setUnique = function (value) {
+  if (!this.unique) this.unique = value
+  else {
+    if (this.unique !== value) this.unique = value
+  }
+  return this
+}
+DatePicker.prototype.getUnique = function (value) {
+  if (!this.unique) this.unique = value
 }
 
 const flatten = list => list.reduce(
@@ -36,10 +28,11 @@ export const filterByWeek = (data) => {
   const filtered = data.map(year => {
     const months = year.months.map(month => {
       const weeks = month.weeks.map(week => {
-        const toogleDay = new DatePeeker()
-        const days = week.days.map(day => {
+        const toogleDay = new DatePicker()
+        const days = week.days.map((day, index) => {
+          const headLine = index === 0 ? `week ${week.number}, ${day.number} ${month.name}` : ''
           toogleDay.setValue(day.number)
-          return day
+          return { ...day, headLine, dateValue: day.number }
         })
         const headLine = `week ${week.number}, ${toogleDay.getValue()} ${month.name}`
         return {
@@ -57,8 +50,9 @@ export const filterByWeek = (data) => {
 export const filterByMonth = (data) => {
   const filtered = data.map(year => {
     const months = year.months.map(month => {
-      const weeks = month.weeks.map(week => {
-        return week.number
+      const weeks = month.weeks.map((week, index) => {
+        const headLine = index === 0 ? `${month.name}` : ''
+        return { dateValue: week.number, headLine }
       })
       const headLine = `${month.name}`
       return {
