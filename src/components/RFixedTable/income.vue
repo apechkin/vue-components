@@ -9,9 +9,11 @@
       <table class="header-table">
         <tr>
           <td v-for="(vdata, index) in filteredDates" :key="`headLine_${index}`">
-            <edrag-input
+            <r-text :value="vdata.fromClient" />
+            <!--            <edrag-input
               :value="vdata.fromClient"
               currency="RUR"/>
+              -->
           </td>
         </tr>
       </table>
@@ -21,13 +23,15 @@
 
 <script>
   import EdragInput from '~/containers/EDragInput/index.vue'
+  import RText from '../RText/index.vue'
   export default {
     props: {
       width: String,
       filteredDates: Array
     },
     components: {
-      EdragInput
+      EdragInput,
+      RText
     },
     data () {
       return {}
@@ -51,6 +55,7 @@
 table {
   td {
     height: 68px;
+    background-color: white;
   }
 }
 </style>

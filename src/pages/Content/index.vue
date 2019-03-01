@@ -26,8 +26,8 @@
     />
     <!-- <rfixed-table/> -->
     <hr>
-    <r-header ref="headerTable" width="100%" :userData="dates"/>
-    <r-income  width="100%" :userData="dates" :com="computedData"/>
+    <r-header ref="headerTable" width="100%" :filteredDates="computedData" />
+    <r-income  width="100%" :userData="dates" :filteredDates="computedData" />
   </div>
 </template>
 
