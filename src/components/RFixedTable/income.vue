@@ -5,15 +5,29 @@
         payment from the client
       </div>
     </div>
-    <div class="right-block"/>
+    <div class="right-block" :style="{width}">
+      <table class="header-table">
+        <tr>
+          <td v-for="(vdata, index) in filteredDates" :key="`headLine_${index}`">
+            <edrag-input
+              :value="vdata.fromClient"
+              currency="RUR"/>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
+  import EdragInput from '~/containers/EDragInput/index.vue'
   export default {
     props: {
-      userData: Array,
-      com: [Array, Object]
+      width: String,
+      filteredDates: Array
+    },
+    components: {
+      EdragInput
     },
     data () {
       return {}
@@ -33,5 +47,10 @@
   text-transform: uppercase;
   text-decoration-style: solid;
   color: $gray_6;
+}
+table {
+  td {
+    height: 68px;
+  }
 }
 </style>

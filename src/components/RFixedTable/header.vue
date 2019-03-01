@@ -9,13 +9,13 @@
     <div ref="header" class="right-block" :style="{width}">
       <table class="header-table">
         <tr>
-          <td v-for="(key, index) in userData" :key="index">
-            <div class="header-sub"><strong>week 5, 29 January</strong></div>
+          <td v-for="(vdata, index) in filteredDates" :key="`headLine_${index}`">
+            <div class="header-sub"><strong>{{vdata.headLine}}</strong></div>
           </td>
         </tr>
         <tr>
-          <td v-for="(key, index) in userData" :key="index">
-            <div class="header-date">{{key}}</div>
+          <td v-for="(vdata, index) in filteredDates" :key="`dateValue_${index}`">
+            <div class="header-date">{{vdata.dateValue}}</div>
           </td>
         </tr>
       </table>
@@ -27,7 +27,7 @@
   export default {
     props: {
       width: String,
-      userData: Array
+      filteredDates: Array
     },
     data () {
       return {
