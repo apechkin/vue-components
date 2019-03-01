@@ -34,11 +34,7 @@ export const filterByWeek = (data) => {
           toogleDay.setValue(day.number)
           return { ...day, headLine, dateValue: day.number }
         })
-        const headLine = `week ${week.number}, ${toogleDay.getValue()} ${month.name}`
-        return {
-          headLine,
-          headFiled: days
-        }
+        return days
       })
       return weeks
     })
@@ -54,11 +50,7 @@ export const filterByMonth = (data) => {
         const headLine = index === 0 ? `${month.name}` : ''
         return { dateValue: week.number, headLine }
       })
-      const headLine = `${month.name}`
-      return {
-        headLine,
-        headFiled: weeks
-      }
+      return weeks
     })
     return months
   })
@@ -67,13 +59,11 @@ export const filterByMonth = (data) => {
 
 export const filterByYear = (data) => {
   const filtered = data.map(year => {
-    const months = year.months.map((months) => {
-      return months.name
+    const months = year.months.map((months, index) => {
+      const headLine = index === 0 ? `${year.year}` : ''
+      return { dateValue: months.name, headLine }
     })
-    return {
-      headLine: year.year,
-      headFiled: months
-    }
+    return months
   })
-  return filtered
+  return flatten(filtered)
 }
