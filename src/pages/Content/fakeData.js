@@ -9,31 +9,31 @@ export const calendar = () => {
             number: 1,
             days: [{
               number: 31,
-              fullDate: '31.12.2018',
+              fullDate: '2018-12-31',
               fromClient: 150145952
             }, {
               number: 1,
-              fullDate: '01.01.2019',
+              fullDate: '2019-01-01',
               fromClient: 240850000
             }, {
               number: 2,
-              fullDate: '02.01.2019',
+              fullDate: '2019-01-02',
               fromClient: 40850000
             }, {
               number: 3,
-              fullDate: '03.01.2019',
+              fullDate: '2019-01-03',
               fromClient: 850000
             }, {
               number: 4,
-              fullDate: '04.01.2019',
+              fullDate: '2019-01-04',
               fromClient: 50000
             }, {
               number: 5,
-              fullDate: '05.01.2019',
+              fullDate: '2019-01-05',
               fromClient: 82850000
             }, {
               number: 6,
-              fullDate: '06.01.2019',
+              fullDate: '2019-01-06',
               fromClient: 6520020
             }]
           },
@@ -42,31 +42,31 @@ export const calendar = () => {
             days: [
               {
                 number: 7,
-                fullDate: '07.01.2019',
+                fullDate: '2019-01-07',
                 fromClient: 6510020
               }, {
                 number: 8,
-                fullDate: '08.01.2019',
+                fullDate: '2019-01-08',
                 fromClient: 651285
               }, {
                 number: 9,
-                fullDate: '09.01.2019',
+                fullDate: '2019-01-09',
                 fromClient: 325894
               }, {
                 number: 10,
-                fullDate: '10.01.2019',
+                fullDate: '2019-01-10',
                 fromClient: 3652147
               }, {
                 number: 11,
-                fullDate: '11.01.2019',
+                fullDate: '2019-01-11',
                 fromClient: 125896
               }, {
                 number: 12,
-                fullDate: '12.01.2019',
+                fullDate: '2019-01-12',
                 fromClient: 6665874
               }, {
                 number: 13,
-                fullDate: '13.01.2019',
+                fullDate: '2019-01-13',
                 fromClient: 1255489
               }]
           },
@@ -75,31 +75,31 @@ export const calendar = () => {
             days: [
               {
                 number: 14,
-                fullDate: '14.01.2019',
+                fullDate: '2019-01-14',
                 fromClient: 4512542
               }, {
                 number: 15,
-                fullDate: '15.01.2019',
+                fullDate: '2019-01-15',
                 fromClient: 984574
               }, {
                 number: 16,
-                fullDate: '16.01.2019',
+                fullDate: '2019-01-16',
                 fromClient: 663254
               }, {
                 number: 17,
-                fullDate: '17.01.2019',
+                fullDate: '2019-01-17',
                 fromClient: 99958
               }, {
                 number: 18,
-                fullDate: '18.01.2019',
+                fullDate: '2019-01-18',
                 fromClient: 3325587
               }, {
                 number: 19,
-                fullDate: '19.01.2019',
+                fullDate: '2019-01-19',
                 fromClient: 1478552
               }, {
                 number: 20,
-                fullDate: '20.01.2019',
+                fullDate: '2019-01-20',
                 fromClient: 99967412
               }]
           },
@@ -108,31 +108,31 @@ export const calendar = () => {
             days: [
               {
                 number: 21,
-                fullDate: '21.01.2019',
+                fullDate: '2019-01-21',
                 fromClient: 1255489
               }, {
                 number: 22,
-                fullDate: '22.01.2019',
+                fullDate: '2019-01-22',
                 fromClient: 1255489
               }, {
                 number: 23,
-                fullDate: '23.01.2019',
+                fullDate: '2019-01-23',
                 fromClient: 1255489
               }, {
                 number: 24,
-                fullDate: '24.01.2019',
+                fullDate: '2019-01-24',
                 fromClient: 1255489
               }, {
                 number: 25,
-                fullDate: '25.01.2019',
+                fullDate: '2019-01-25',
                 fromClient: 1255489
               }, {
                 number: 26,
-                fullDate: '26.01.2019',
+                fullDate: '2019-01-26',
                 fromClient: 1255489
               }, {
                 number: 27,
-                fullDate: '27.01.2019',
+                fullDate: '2019-01-27',
                 fromClient: 1255489
               }]
           },
@@ -141,31 +141,31 @@ export const calendar = () => {
             days: [
               {
                 number: 28,
-                fullDate: '28.01.2019',
+                fullDate: '2019-01-28',
                 fromClient: 1255489
               }, {
                 number: 29,
-                fullDate: '29.01.2019',
+                fullDate: '2019-01-29',
                 fromClient: 1255489
               }, {
                 number: 30,
-                fullDate: '30.01.2019',
+                fullDate: '2019-01-30',
                 fromClient: 1255489
               }, {
                 number: 31,
-                fullDate: '31.01.2019',
+                fullDate: '2019-01-31',
                 fromClient: 1255489
               }, {
                 number: 1,
-                fullDate: '01.02.2019',
+                fullDate: '2019-02-01',
                 fromClient: 1255489
               }, {
                 number: 2,
-                fullDate: '02.02.2019',
+                fullDate: '2019-02-02',
                 fromClient: 1255489
               }, {
                 number: 3,
-                fullDate: '03.02.2019',
+                fullDate: '2019-02-03',
                 fromClient: 1255489
               }]
           }]
@@ -177,31 +177,31 @@ export const calendar = () => {
           days: [
             {
               number: 4,
-              fullDate: '04.02.2019',
+              fullDate: '2019-02-04',
               fromClient: 1255489
             }, {
               number: 5,
-              fullDate: '05.02.2019',
+              fullDate: '2019-02-05',
               fromClient: 1255489
             }, {
               number: 6,
-              fullDate: '06.02.2019',
+              fullDate: '2019-02-06',
               fromClient: 1255489
             }, {
               number: 7,
-              fullDate: '07.02.2019',
+              fullDate: '2019-02-07',
               fromClient: 1255489
             }, {
               number: 8,
-              fullDate: '08.02.2019',
+              fullDate: '2019-02-08',
               fromClient: 1255489
             }, {
               number: 9,
-              fullDate: '09.02.2019',
+              fullDate: '2019-02-09',
               fromClient: 1255489
             }, {
               number: 10,
-              fullDate: '10.02.2019',
+              fullDate: '2019-02-10',
               fromClient: 1255489
             }]
         },
@@ -210,31 +210,31 @@ export const calendar = () => {
           days: [
             {
               number: 11,
-              fullDate: '11.02.2019',
+              fullDate: '2019-02-11',
               fromClient: 1255489
             }, {
               number: 12,
-              fullDate: '12.02.2019',
+              fullDate: '2019-02-12',
               fromClient: 1255489
             }, {
               number: 13,
-              fullDate: '13.02.2019',
+              fullDate: '2019-02-13',
               fromClient: 1255489
             }, {
               number: 14,
-              fullDate: '14.02.2019',
+              fullDate: '2019-02-14',
               fromClient: 1255489
             }, {
               number: 15,
-              fullDate: '15.02.2019',
+              fullDate: '2019-02-15',
               fromClient: 1255489
             }, {
               number: 16,
-              fullDate: '16.02.2019',
+              fullDate: '2019-02-16',
               fromClient: 1255489
             }, {
               number: 17,
-              fullDate: '17.02.2019',
+              fullDate: '2019-02-17',
               fromClient: 1255489
             }]
         },
@@ -243,31 +243,31 @@ export const calendar = () => {
           days: [
             {
               number: 18,
-              fullDate: '18.02.2019',
+              fullDate: '2019-02-18',
               fromClient: 1255489
             }, {
               number: 19,
-              fullDate: '19.02.2019',
+              fullDate: '2019-02-19',
               fromClient: 1255489
             }, {
               number: 20,
-              fullDate: '20.02.2019',
+              fullDate: '2019-02-20',
               fromClient: 1255489
             }, {
               number: 21,
-              fullDate: '21.02.2019',
+              fullDate: '2019-02-21',
               fromClient: 1255489
             }, {
               number: 22,
-              fullDate: '22.02.2019',
+              fullDate: '2019-02-22',
               fromClient: 1255489
             }, {
               number: 23,
-              fullDate: '23.02.2019',
+              fullDate: '2019-02-23',
               fromClient: 1255489
             }, {
               number: 24,
-              fullDate: '24.02.2019',
+              fullDate: '2019-02-24',
               fromClient: 1255489
             }]
         },
@@ -276,31 +276,31 @@ export const calendar = () => {
           days: [
             {
               number: 25,
-              fullDate: '25.02.2019',
+              fullDate: '2019-02-25',
               fromClient: 1255489
             }, {
               number: 26,
-              fullDate: '26.02.2019',
+              fullDate: '2019-02-26',
               fromClient: 1255489
             }, {
               number: 27,
-              fullDate: '27.02.2019',
+              fullDate: '2019-02-27',
               fromClient: 1255489
             }, {
               number: 28,
-              fullDate: '28.02.2019',
+              fullDate: '2019-02-28',
               fromClient: 1255489
             }, {
               number: 1,
-              fullDate: '01.03.2019',
+              fullDate: '2019-03-01',
               fromClient: 1255489
             }, {
               number: 2,
-              fullDate: '02.03.2019',
+              fullDate: '2019-03-02',
               fromClient: 1255489
             }, {
               number: 3,
-              fullDate: '03.03.2019',
+              fullDate: '2019-03-03',
               fromClient: 1255489
             }]
         }]
@@ -314,10 +314,10 @@ export const costItems = () => {
       id: 1514,
       name: 'Do excepteur est culpa et commodo duis.',
       values: [{
-        date: '31.12.2018',
+        date: '2018-12-31',
         value: 15000
       }, {
-        date: '31.01.2019',
+        date: '2019-01-31',
         value: 25000
       }]
     },
@@ -325,10 +325,10 @@ export const costItems = () => {
       id: 2256,
       name: 'Do excepteur est culpa et commodo duis.',
       values: [{
-        date: '01.01.2018',
+        date: '2018-01-01',
         value: 18000
       }, {
-        date: '02.01.2019',
+        date: '2019-01-02',
         value: 22000
       }]
     },
@@ -336,10 +336,10 @@ export const costItems = () => {
       id: 4587,
       name: 'Do excepteur est culpa et commodo duis.',
       values: [{
-        date: '31.12.2018',
+        date: '2018-12-31',
         value: 5000
       }, {
-        date: '31.01.2019',
+        date: '2019-01-31',
         value: 6000
       }]
     },
@@ -347,13 +347,13 @@ export const costItems = () => {
       id: 9512,
       name: 'Do excepteur est culpa et commodo duis.',
       values: [{
-        date: '20.01.2018',
+        date: '2018-01-20',
         value: 95230
       }, {
-        date: '26.01.2019',
+        date: '2019-01-26',
         value: 95743
       }, {
-        date: '02.02.2019',
+        date: '2019-02-02',
         value: 35741
       }]
     },
@@ -361,10 +361,10 @@ export const costItems = () => {
       id: 95147,
       name: 'Do excepteur est culpa et commodo duis.',
       values: [{
-        date: '03.02.2018',
+        date: '2018-02-03',
         value: 85413
       }, {
-        date: '15.02.2019',
+        date: '2019-02-15',
         value: 65893
       }]
     }
