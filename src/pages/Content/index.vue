@@ -26,8 +26,7 @@
     />
     <!-- <rfixed-table/> -->
     <hr>
-    <r-header ref="headerTable" width="100%" :filteredDates="computedData" />
-    <r-income  width="100%" :userData="dates" :filteredDates="computedData" />
+    <e-table :fundsAndDates="fundsAndDates" :estimates="estimates" />
   </div>
 </template>
 
@@ -36,9 +35,7 @@
   import RSelect from '@/RSelect'
   import { calendar, costItems } from './fakeData.js'
   import { filterByWeek, filterByMonth, filterByYear } from '~/helpers/dateFilters.js'
-  import RfixedTable from '@/RFixedTable'
-  import RHeader from '@/RFixedTable/header'
-  import RIncome from '@/RFixedTable/income'
+  import ETable from '~/containers/EFixedTable/index.vue'
   export default {
     directives: {
       scroll: {
@@ -56,9 +53,7 @@
     components: {
       EdragInput,
       RSelect,
-      RfixedTable,
-      RHeader,
-      RIncome
+      ETable
     },
     data () {
       return {
@@ -133,7 +128,7 @@
       }
     },
     computed: {
-      computedData () {
+      fundsAndDates () {
         const { selectedOption } = this
         let data = []
         switch (selectedOption) {
@@ -149,14 +144,17 @@
           default:
             break
         }
-        console.log(data)
         return data
+      },
+      estimates () {
+        return costItems()
       }
     }
   }
 </script>
 <style lang="scss" scoped>
 @import "../../assets/mixins.scss";
+@import "../../assets/style.scss";
 .drag-example {
   background-color: $gray_4;
 }

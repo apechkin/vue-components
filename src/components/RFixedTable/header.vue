@@ -9,12 +9,12 @@
     <div ref="header" class="right-block" :style="{width}">
       <table class="header-table">
         <tr>
-          <td v-for="(vdata, index) in filteredDates" :key="`headLine_${index}`">
+          <td v-for="(vdata, index) in fundsAndDates" :key="`headLine_${index}`">
             <div class="header-sub"><strong>{{vdata.headLine}}</strong></div>
           </td>
         </tr>
         <tr>
-          <td v-for="(vdata, index) in filteredDates" :key="`dateValue_${index}`">
+          <td v-for="(vdata, index) in fundsAndDates" :key="`dateValue_${index}`">
             <div class="header-date">{{vdata.dateValue}}</div>
           </td>
         </tr>
@@ -27,7 +27,7 @@
   export default {
     props: {
       width: String,
-      filteredDates: Array
+      fundsAndDates: Array
     },
     data () {
       return {
@@ -59,7 +59,7 @@ $blockHeight: 68px;
   font-weight: 400;
   justify-content: center;
   align-items: center;
-  height: $blockHeight / 2;
+  height: ($blockHeight / 2) - 4px;
   color: $gray_6;
 }
 .header-table {

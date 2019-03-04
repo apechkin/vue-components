@@ -100,7 +100,6 @@
   $parentWidth: 128px;
   $parentHeight: 46px;
   $editIconWidth: 30px;
-  $currencyIcon: 20px;
   $actionIncons: 40px;
   .box {
     position: relative;
@@ -139,16 +138,6 @@
     transition: 0.4s;
     line-height: 25px;
     padding-left: 7px;
-  }
-  .box-currency {
-    width: $currencyIcon;
-    height: 100%;
-    font-size: 12px;
-    display: flex;
-    padding-left: 3px;
-    justify-content: flex-start;
-    align-items: center;
-    color: $gray_5;
   }
   .box-fake {
     @extend .df-center-jcend ;

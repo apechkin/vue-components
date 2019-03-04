@@ -63,6 +63,7 @@
 
 <style lang="scss" scoped>
   @import "../../assets/mixins.scss";
+  @import "../../assets/style.scss";
   .drag-component {
     display: inline-block;
     position: relative;

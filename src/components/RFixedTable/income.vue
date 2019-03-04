@@ -6,14 +6,14 @@
       </div>
     </div>
     <div class="right-block" :style="{width}">
-      <table class="header-table">
+      <table>
         <tr>
-          <td v-for="(vdata, index) in filteredDates" :key="`headLine_${index}`">
-            <r-text :value="vdata.fromClient" />
-            <!--            <edrag-input
-              :value="vdata.fromClient"
-              currency="RUR"/>
-              -->
+          <td v-for="(vdata, index) in fundsAndDates" :key="`income_${index}`">
+            <r-text :value="vdata.fromClient" separate >
+              <template v-slot:currency-icon>
+                {{'$'}}
+              </template>
+            </r-text>
           </td>
         </tr>
       </table>
@@ -22,22 +22,14 @@
 </template>
 
 <script>
-  import EdragInput from '~/containers/EDragInput/index.vue'
   import RText from '../RText/index.vue'
   export default {
     props: {
       width: String,
-      filteredDates: Array
+      fundsAndDates: Array
     },
     components: {
-      EdragInput,
       RText
-    },
-    data () {
-      return {}
-    },
-    updated () {
-      console.log(this.com)
     }
   }
 </script>
@@ -52,10 +44,18 @@
   text-decoration-style: solid;
   color: $gray_6;
 }
+.r-text {
+  background-color: white;
+}
 table {
+  border-collapse: collapse;
+  border-spacing: 2px;
   td {
-    height: 68px;
-    background-color: white;
+    height: 64px;
+    width: 1px;
+    min-width: 127px;
+    vertical-align: text-bottom;
+    font-size: 12px;
   }
 }
 </style>

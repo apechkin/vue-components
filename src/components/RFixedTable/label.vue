@@ -23,6 +23,7 @@
 
 <style lang="scss" scoped>
 @import "../../assets/mixins.scss";
+@import "../../assets/style.scss";
 .inline {
   display: inline-block;
   min-width: 128px;
