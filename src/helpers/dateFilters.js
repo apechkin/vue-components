@@ -1,3 +1,5 @@
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
 function DatePicker () {
   this.value = null
   this.unique = null
@@ -30,7 +32,8 @@ export const filterByWeek = (data) => {
       const weeks = month.weeks.map(week => {
         const toogleDay = new DatePicker()
         const days = week.days.map((day, index) => {
-          const headLine = index === 0 ? `week ${week.number}, ${day.number} ${month.name}` : ''
+          const d = new Date(day.fullDate)
+          const headLine = index === 0 ? `week ${week.number}, ${day.number} ${monthNames[d.getMonth()]}` : ''
           toogleDay.setValue(day.number)
           return { ...day, headLine, dateValue: day.number }
         })
@@ -47,8 +50,11 @@ export const filterByMonth = (data) => {
   const filtered = data.map(year => {
     const months = year.months.map(month => {
       const weeks = month.weeks.map((week, index) => {
+        const fromClient = week.days.reduce((acc, cur) => {
+          return Number(acc) + Number(cur.fromClient)
+        }, 0)
         const headLine = index === 0 ? `${month.name}` : ''
-        return { dateValue: week.number, headLine }
+        return { dateValue: week.number, headLine, fromClient }
       })
       return weeks
     })
@@ -59,9 +65,14 @@ export const filterByMonth = (data) => {
 
 export const filterByYear = (data) => {
   const filtered = data.map(year => {
-    const months = year.months.map((months, index) => {
+    const months = year.months.map((month, index) => {
+      const fromClient = month.weeks.reduce((acc, curW) => {
+        return Number(acc) + Number(curW.days.reduce((accD, cur) => {
+          return Number(accD) + Number(cur.fromClient)
+        }, 0))
+      }, 0)
       const headLine = index === 0 ? `${year.year}` : ''
-      return { dateValue: months.name, headLine }
+      return { dateValue: month.name, headLine, fromClient }
     })
     return months
   })
