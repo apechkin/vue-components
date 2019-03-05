@@ -5,14 +5,14 @@
         <tr v-for="estimate in estimates" :key="estimate.id">
           <td>
             <div class="estimate-content">
-              <div class="estimate-name">
+              <div class="estimate-name" @click="handleClick(estimate.id)">
                 {{estimate.name}}
               </div>
               <div class="estimate-total">
-                {{'-1200000'}}
+                <r-text value="-1200000" separate :styles="{'background-color': 'transparent'}" />
               </div>
               <div class="estimate-unallocated">
-                {{'80000'}}
+                <r-text value="80000" separate :styles="{'background-color': 'transparent'}" />
               </div>
             </div>
           </td>
@@ -20,28 +20,44 @@
       </table>
     </div>
     <div class="right-block" :style="{width}">
-    <!-- <table>
-        <tr>
-          <td v-for="(vdata, index) in filteredDates" :key="`headLine_${index}`">
-            <edrag-input :value="vdata.value" currency="RUR" />
+      <table>
+        <tr v-for="est in estTotalContent" :key="`${est.id}`">
+          <td v-for="data in est.totals" :key="`${est.id}-${data.fullDate}`">
+            <edrag-input
+              :value="data.total"
+              @accepted="data => $emit('accepted', {data, id:est.id})"
+              currency="RUR"/>
+              <!--
+            <r-text :value="data.total" separate :styles="{'top': '1px', 'bottom': '0'}" >
+              <template v-slot:currency-icon>
+                {{'$'}}
+              </template>
+            </r-text>
+            -->
           </td>
         </tr>
       </table>
-      -->
     </div>
   </div>
 </template>
 
 <script>
   import EdragInput from '~/containers/EDragInput/index.vue'
+  import RText from '@/RText/index.vue'
   export default {
     props: {
       width: String,
-      filteredDates: Array,
-      estimates: Array
+      estimates: Array,
+      estTotalContent: Array
     },
     components: {
-      EdragInput
+      EdragInput,
+      RText
+    },
+    methods: {
+      handleClick (id) {
+        console.log('click on', id)
+      }
     }
   }
 </script>
@@ -50,32 +66,56 @@
 @import "../../assets/style.scss";
 @import "../../assets/mixins.scss";
 .left-block {
-  width: 100%;
   height: $tbl_estimate_height;
   overflow: hidden;
   table {
     width: 100%;
+    table-layout: fixed;
   }
 }
-   table tr td {
-        word-break: break-word;
-    }
+.right-block {
+  height: $tbl_estimate_height;
+}
 .estimate-content {
-  display: flex;
+  @extend .df-center-jccenter;
   height: 100%;
   width: inherit;
+  position: relative;
 }
 .estimate-name {
-  background-color: khaki;
+  font-size: 14px;
   flex-grow: 1;
-  white-space: nowrap; /* Запрещаем перенос строк */
-  overflow: hidden; /* Обрезаем все, что не помещается в область */
-  text-overflow: ellipsis; /* Добавляем многоточие */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $blue_5;
+  padding-right: 5px;
+  &:hover {
+    color: $orange_5;
+  }
 }
 .estimate-total, .estimate-unallocated {
-  background-color: darkkhaki;
+  @extend .df-center-jcend;
+  font-size: 12px;
   flex-grow: 0;
   width: 127px;
-  height: $tbl_header_height;
+  min-height: $tbl_ce_height;
+  height: $tbl_ce_height;
 }
+.right-block {
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 2px;
+    td {
+      min-height: $tbl_ce_height + 2px;
+      height: $tbl_ce_height + 2px;
+      width: 1px;
+      min-width: 127px;
+      vertical-align: text-bottom;
+      font-size: 12px;
+    }
+  }
+}
+
 </style>

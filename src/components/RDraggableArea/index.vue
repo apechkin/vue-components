@@ -67,13 +67,12 @@
   .drag-component {
     display: inline-block;
     position: relative;
-    width: 128px;
-    height: 48px;
+    width: $tbl_header_width;
+    height: $tbl_ce_height;
     background-color: white;
     text-align: right;
-    margin: 1px .5px;
     cursor: pointer;
-    border: 2px solid transparent;
+    border: 2px solid white;
   }
   .selected {
     border: 2px solid $orange_5!important;

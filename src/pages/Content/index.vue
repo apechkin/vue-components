@@ -26,7 +26,7 @@
     />
     <!-- <rfixed-table/> -->
     <hr>
-    <e-table :fundsAndDates="fundsAndDates" :estimates="estimates" />
+    <e-table :fundsAndDates="fundsAndDates" :estimates="estimates" :estTotalContent="estTotalContent" />
   </div>
 </template>
 
@@ -35,6 +35,7 @@
   import RSelect from '@/RSelect'
   import { calendar, costItems } from './fakeData.js'
   import { filterByWeek, filterByMonth, filterByYear } from '~/helpers/dateFilters.js'
+  import { mapEstToDate } from '~/helpers/mapper.js'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
     directives: {
@@ -94,8 +95,12 @@
         }, {
           label: 'Years',
           value: 'years'
-        }]
+        }],
+        est: []
       }
+    },
+    created () {
+      this.est = costItems()
     },
     mounted () {
       /*
@@ -148,6 +153,10 @@
       },
       estimates () {
         return costItems()
+      },
+      estTotalContent () {
+        const data = mapEstToDate(this.est, this.fundsAndDates)
+        return data
       }
     }
   }

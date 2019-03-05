@@ -70,6 +70,11 @@ $blockHeight: 68px;
 .header-total {
   position: relative;
 }
+.right-block {
+  table {
+    table-layout: fixed;
+  }
+}
 .left-block-content {
   span {
     margin: 0 15px 0 0;

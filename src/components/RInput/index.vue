@@ -103,7 +103,7 @@
   $actionIncons: 40px;
   .box {
     position: relative;
-    width: $parentWidth;
+    width: $tbl_header_width;
     height: 100%;
     display: flex;
   }
@@ -112,7 +112,7 @@
     top: 0;
     left: 2px;
     width: $editIconWidth;
-    height: 100%;
+    height: inherit;
     font-size: 12px;
     display: flex;
     justify-content: center;
@@ -134,7 +134,7 @@
     text-align: right;
     color: $charcoal-grey;
     width: 100%;
-    height: calcSize($parentHeight, 0px);
+    height: inherit;
     transition: 0.4s;
     line-height: 25px;
     padding-left: 7px;
@@ -142,7 +142,7 @@
   .box-fake {
     @extend .df-center-jcend ;
     font-size: 12px;
-    width: calcSize($parentWidth, $currencyIcon);
+    width: calcSize($tbl_header_width, $currencyIcon);
   }
   .entered {
     opacity: 1;

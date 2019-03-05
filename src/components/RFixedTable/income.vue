@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import RText from '../RText/index.vue'
+  import RText from '@/RText/index.vue'
   export default {
     props: {
       width: String,
@@ -47,15 +47,18 @@
 .r-text {
   background-color: white;
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 2px;
-  td {
-    height: 64px;
-    width: 1px;
-    min-width: 127px;
-    vertical-align: text-bottom;
-    font-size: 12px;
+.right-block {
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 2px;
+    td {
+      height: 64px;
+      width: 1px;
+      min-width: 127px;
+      vertical-align: text-bottom;
+      font-size: 12px;
+    }
   }
 }
 </style>

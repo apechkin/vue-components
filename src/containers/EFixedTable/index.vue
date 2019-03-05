@@ -1,8 +1,8 @@
 <template>
   <div>
-    <r-header ref="headerTable" width="100%" :fundsAndDates="fundsAndDates" />
-    <r-income  width="100%" :fundsAndDates="fundsAndDates" />
-    <r-estimate width="100%" :estimates="estimates" :fundsAndDates="fundsAndDates" />
+    <r-header ref="headerTable" :fundsAndDates="fundsAndDates" />
+    <r-income :fundsAndDates="fundsAndDates" />
+    <r-estimate :estimates="estimates" :estTotalContent="estTotalContent" />
   </div>
 </template>
 
@@ -18,7 +18,8 @@
     },
     props: {
       fundsAndDates: Array,
-      estimates: Array
+      estimates: Array,
+      estTotalContent: Array
     }
   }
 </script>

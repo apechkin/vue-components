@@ -68,6 +68,7 @@ $orange_9: #d9480f;
 
 // sizes
 $tbl_header_height: 68px;
+$tbl_ce_height: 48px;
 $tbl_header_width: 127px;
 $currencyIcon: 20px;
 $tbl_estimate_height: 364px;
@@ -94,7 +95,7 @@ $tbl_estimate_height: 364px;
   height: $tbl_header_height;
   white-space: nowrap;
   overflow: hidden hidden;
-  min-width: 75%;
+  width: 1200px;
 }
 .left-block-content {
   display: flex;

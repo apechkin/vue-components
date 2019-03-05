@@ -367,6 +367,72 @@ export const costItems = () => {
         date: '2019-02-15',
         value: 65893
       }]
+    },
+    {
+      id: 65684,
+      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      values: [{
+        date: '2018-02-03',
+        value: 4512
+      }, {
+        date: '2019-02-15',
+        value: 6521
+      }]
+    },
+    {
+      id: 65685,
+      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      values: [{
+        date: '2018-02-03',
+        value: 4512
+      }, {
+        date: '2019-02-15',
+        value: 6521
+      }]
+    },
+    {
+      id: 65686,
+      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      values: [{
+        date: '2018-02-03',
+        value: 4512
+      }, {
+        date: '2019-02-15',
+        value: 6521
+      }]
+    },
+    {
+      id: 65687,
+      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      values: [{
+        date: '2018-02-03',
+        value: 4512
+      }, {
+        date: '2019-02-15',
+        value: 6521
+      }]
+    },
+    {
+      id: 65688,
+      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      values: [{
+        date: '2018-02-03',
+        value: 4512
+      }, {
+        date: '2019-02-15',
+        value: 6521
+      }]
+    },
+    {
+      id: 65689,
+      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      values: [{
+        date: '2018-02-03',
+        value: 4512
+      }, {
+        date: '2019-02-15',
+        value: 6521
+      }]
     }
   ]
 }
