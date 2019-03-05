@@ -1,5 +1,5 @@
 const checkParam = (param) => {
-  if (!Array.isArray(param)) throw TypeError('Param must be Array')
+  if (!Array.isArray(param)) throw new TypeError('Param must be Array')
 }
 
 const checkSub = (date, subjects) => {
@@ -21,7 +21,6 @@ export const mapEstToDate = (estimates, dates) => {
       })
       return { id: estimate.id, name: estimate.name, totals }
     })
-    console.log(cross)
     return cross
   } catch (error) {
     throw error
