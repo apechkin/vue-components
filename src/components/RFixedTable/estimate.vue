@@ -12,7 +12,7 @@
                 <r-text value="-1200000" separate :styles="{'background-color': 'transparent'}" />
               </div>
               <div class="estimate-unallocated">
-                <r-text value="80000" separate :styles="{'background-color': 'transparent'}" />
+                <r-text value="80000" separate :styles="{'background-color': '#e9ecef'}" />
               </div>
             </div>
           </td>
@@ -24,16 +24,11 @@
         <tr v-for="est in estTotalContent" :key="`${est.id}`">
           <td v-for="data in est.totals" :key="`${est.id}-${data.fullDate}`">
             <edrag-input
+              :dataTransfer="data"
               :value="data.total"
               @accepted="data => $emit('accepted', {data, id:est.id})"
-              currency="RUR"/>
-              <!--
-            <r-text :value="data.total" separate :styles="{'top': '1px', 'bottom': '0'}" >
-              <template v-slot:currency-icon>
-                {{'$'}}
-              </template>
-            </r-text>
-            -->
+              currency="RUR"
+              :key="`drag-${est.id}-${data.fullDate}`"/>
           </td>
         </tr>
       </table>
