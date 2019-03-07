@@ -24,7 +24,7 @@
         <tr v-for="est in estTotalContent" :key="`${est.id}`">
           <td v-for="data in est.totals" :key="`${est.id}-${data.fullDate}`">
             <edrag-input
-              :dataTransfer="data"
+              :dataTransfer="{data, id: est.id, name: est.name}"
               :value="data.total"
               @accepted="data => $emit('accepted', {data, id:est.id})"
               currency="RUR"

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="editMode" class="edit-icons">
+  <div class="edit-icons">
+    <div v-if="editMode">
       <i class="fa fa-times cancel" aria-hidden="true" @click="handleAccept('cancel')"/>
       <i class="fa fa-check confirm" aria-hidden="true" @click="handleAccept('confirm')"/>
     </div>
@@ -31,12 +31,13 @@
     display: flex;
     justify-content: space-around;
     width: 40px;
-    font-size: $big;
   }
   .confirm {
     color: $green_7;
+    font-size: $big;
   }
   .cancel {
     color: $red_6;
+    font-size: $big;
   }
 </style>

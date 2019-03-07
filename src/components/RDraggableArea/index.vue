@@ -1,6 +1,6 @@
 <template>
-  <div class="drag-wrapperr">
-    <div class="drag-fakeelement prevent" />
+  <div class="drag-wrapperr" ref="dragWrap">
+    <div class="drag-fakeelement" />
     <div
       ref="dragComponent"
       class="drag-component"

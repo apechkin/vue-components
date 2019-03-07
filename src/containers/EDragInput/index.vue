@@ -37,6 +37,7 @@
   import RdragBlock from '@/RDraggableArea/index.vue'
   import RInput from '@/RInput/index.vue'
   import ReditIcon from '@/REditIcon/index.vue'
+  import { mapMutations, mapGetters } from 'vuex'
   export default {
     components: {
       RdragBlock,
@@ -51,7 +52,8 @@
       draggable: {
         type: Boolean,
         default: true
-      }
+      },
+      dataTransfer: Object
     },
     data () {
       return {
@@ -72,7 +74,8 @@
         dragTargetElement: {
           target: null,
           type: null
-        }
+        },
+        i: 0
       }
     },
     methods: {
@@ -98,56 +101,59 @@
         this.componentValue = val
       },
       dragStart (event) {
-        console.log('drag start')
-        if (event.fromElement === null || typeof event.fromElement === 'undefined') {
-          this.dragTargetElement['target'] = JSON.stringify(event.target).replace(/ entered/, '')
-          this.dragTargetElement['type'] = event.type
-        }
-        console.log(this.dragTargetElement)
+        this.$store.commit('setFromEst', this.dataTransfer)
+        console.log('drag start with content:', this.dataTransfer)
       },
       dragTarget (event) {
         event.target.style.zIndex = 8
       },
       dragEnd (event) {
         event.target.style.zIndex = 10
-        event.target.style.cursor = 'pointer'
       },
       dragEnter (event) {
         // event.preventDefault() // обязательно
-        // console.log('dragEnter on:', id)
-        console.log('dragEnter:', JSON.stringify(event.target))
-        console.log('dragEnter type:', typeof JSON.stringify(event.target))
-        event.stopPropagation()
+        // console.log('dragEnter on:', event)
+        // console.log('dragEnter:', JSON.stringify(event.target))
+        // console.log('dragEnter type:', typeof JSON.stringify(event.target))
+        // console.log(event)
         event.preventDefault()
-        if (JSON.stringify(event.target).replace(/ entered/, '') == this.dragTargetElement['target']) {
-          console.log('enter to another element')
-
-          // event.target.style.border = '2px solid #339af0'
-        } else {
-          console.log(JSON.stringify(event.target).replace(/ entered/, ''), ' not equal: ', this.dragTargetElement['target'])
+        console.log('drag enter: ', this.dataTransfer)
+        this.$store.commit('setToEst', this.dataTransfer)
+        /*
+        if (typeof event.target === 'object' && event.target.className === 'drag-component') {
+          this.i++
+          if (JSON.stringify(event.target) === this.getComponent['target']) event.target.style.border = '2px solid #339af0'
         }
+        */
       },
       dragOver (event) {
         // console.log('dragOver')
         // console.log(event)
-        event.stopPropagation()
         event.preventDefault()
+        event.dataTransfer.dropEffect = 'move'
       },
       dragLeave (event) {
         // console.log('dragLeave id:', id)
-        console.log('dragLeave:', event)
-        if (event.target.className === 'drag-component') {
-          event.target.style.border = ''
+        // console.log('dragLeave:', event)
+        event.preventDefault()
+        /*
+        if (typeof event.fromElement === 'object' && event.fromElement.nodeName === 'TD') {
+          console.log('leave component')
+          // event.target.style.border = ''
         }
+        */
       },
       dragExit (event) {
-        console.log('dragExit')
+        // console.log('dragExit')
       },
       dropToTarget (event) {
-        console.log('drop r-fixed')
-      }
+        console.log('drop: ', this.$store.state.dragTable)
+        this.$store.commit('resetState')
+      },
+      ...mapMutations(['saveComponent', 'deleteComponent'])
     },
     computed: {
+      ...mapGetters(['getComponent']),
       computeCurrency () {
         let label = ``
         const { curnum, currency } = this

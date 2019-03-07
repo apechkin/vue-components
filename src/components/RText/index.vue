@@ -54,6 +54,8 @@
   @extend .df-center-jcend;
 }
 .box-currency {
+  position: relative;
+  right: 2px;
   @extend .df-center-jcend;
   width: $currencyIcon;
   height: 100%;
