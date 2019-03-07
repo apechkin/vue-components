@@ -1,37 +1,43 @@
 <template>
   <div class="content-block">
-    <div class="left-block">
+    <div class="left-block" ref="items">
       <table>
-        <tr v-for="estimate in estimates" :key="estimate.id">
-          <td>
-            <div class="estimate-content">
-              <div class="estimate-name" @click="handleClick(estimate.id)">
-                {{estimate.name}}
+        <tbody>
+          <tr v-for="estimate in estimates" :key="estimate.id">
+            <td>
+              <div class="estimate-content">
+                <div class="estimate-name" @click="handleClick(estimate.id)">
+                  {{estimate.name}}
+                </div>
+                <div class="estimate-total">
+                  <r-text value="-1200000" separate :styles="{'background-color': 'transparent'}" />
+                </div>
+                <div class="estimate-unallocated">
+                  <r-text value="80000" separate :styles="{'background-color': '#e9ecef'}" />
+                </div>
               </div>
-              <div class="estimate-total">
-                <r-text value="-1200000" separate :styles="{'background-color': 'transparent'}" />
-              </div>
-              <div class="estimate-unallocated">
-                <r-text value="80000" separate :styles="{'background-color': '#e9ecef'}" />
-              </div>
-            </div>
-          </td>
-        </tr>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
     <div class="right-block" :style="{width}">
-      <table>
-        <tr v-for="est in estTotalContent" :key="`${est.id}`">
-          <td v-for="data in est.totals" :key="`${est.id}-${data.fullDate}`">
-            <edrag-input
-              :dataTransfer="{data, id: est.id, name: est.name}"
-              :value="data.total"
-              @accepted="data => $emit('accepted', {data, id:est.id})"
-              currency="RUR"
-              :key="`drag-${est.id}-${data.fullDate}`"/>
-          </td>
-        </tr>
-      </table>
+      <r-mask ref="mask">
+        <table>
+          <tbody>
+            <tr v-for="est in estTotalContent" :key="`${est.id}`">
+              <td v-for="data in est.totals" :key="`${est.id}-${data.fullDate}`">
+                <edrag-input
+                  :dataTransfer="{data, id: est.id, name: est.name}"
+                  :value="data.total"
+                  @accepted="data => $emit('accepted', {data, id:est.id})"
+                  currency="RUR"
+                  :key="`drag-${est.id}-${data.fullDate}`"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </r-mask>
     </div>
   </div>
 </template>
@@ -39,6 +45,7 @@
 <script>
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RText from '@/RText/index.vue'
+  import RMask from './mask.vue'
   export default {
     props: {
       width: String,
@@ -47,7 +54,8 @@
     },
     components: {
       EdragInput,
-      RText
+      RText,
+      RMask
     },
     methods: {
       handleClick (id) {

@@ -5,17 +5,19 @@
         payment from the client
       </div>
     </div>
-    <div class="right-block" :style="{width}">
+    <div ref="income" class="right-block" :style="{width}">
       <table>
-        <tr>
-          <td v-for="(vdata, index) in fundsAndDates" :key="`income_${index}`">
-            <r-text :value="vdata.fromClient" separate >
-              <template v-slot:currency-icon>
-                {{'$'}}
-              </template>
-            </r-text>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td v-for="(vdata, index) in fundsAndDates" :key="`income_${index}`">
+              <r-text :value="vdata.fromClient" separate >
+                <template v-slot:currency-icon>
+                  {{'$'}}
+                </template>
+              </r-text>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

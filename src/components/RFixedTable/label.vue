@@ -26,7 +26,7 @@
 @import "../../assets/style.scss";
 .inline {
   display: inline-block;
-  min-width: 128px;
+  min-width: 127px;
   height: 100%;
   position: relative;
   overflow: hidden;

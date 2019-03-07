@@ -8,16 +8,18 @@
     </div>
     <div ref="header" class="right-block" :style="{width}">
       <table class="header-table">
-        <tr>
-          <td v-for="(vdata, index) in fundsAndDates" :key="`headLine_${index}`">
-            <div class="header-sub"><strong>{{vdata.headLine}}</strong></div>
-          </td>
-        </tr>
-        <tr>
-          <td v-for="(vdata, index) in fundsAndDates" :key="`dateValue_${index}`">
-            <div class="header-date">{{vdata.dateValue}}</div>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td v-for="(vdata, index) in fundsAndDates" :key="`headLine_${index}`">
+              <div class="header-sub"><strong>{{vdata.headLine}}</strong></div>
+            </td>
+          </tr>
+          <tr>
+            <td v-for="(vdata, index) in fundsAndDates" :key="`dateValue_${index}`">
+              <div class="header-date">{{vdata.dateValue}}</div>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
