@@ -2,7 +2,7 @@
   <div>
     <r-header ref="headerTable" :fundsAndDates="fundsAndDates" />
     <r-income ref="incomeTable" :fundsAndDates="fundsAndDates" />
-    <r-estimate ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
+    <r-estimate @userScroll="handleUserScroll" ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
   </div>
 </template>
 
@@ -21,14 +21,32 @@
       estimates: Array,
       estTotalContent: Array
     },
+    data () {
+      return {
+        income: null,
+        header: null,
+        items: null
+      }
+    },
     mounted () {
-      const mask = this.$refs.estimateTable.$refs.mask.$el
-      const income = this.$refs.incomeTable.$refs.income
-      console.log(income)
-
-      mask.addEventListener('scroll', function () {
-        income.scrollLeft = this.scrollLeft
-      }, { passive: true })
+      this.income = this.$refs.incomeTable.$refs.income
+      this.header = this.$refs.headerTable.$refs.header
+      this.items = this.$refs.estimateTable.$refs.items
+    },
+    beforeDestroy () {
+      this.income = null
+      this.header = null
+      this.items = null
+    },
+    methods: {
+      handleUserScroll (evt) {
+        evt.preventDefault()
+        const scrollLeft = evt.target.scrollLeft
+        const scrollTop = evt.target.scrollTop
+        this.income.scrollLeft = scrollLeft
+        this.header.scrollLeft = scrollLeft
+        this.items.scrollTop = scrollTop
+      }
     }
   }
 </script>

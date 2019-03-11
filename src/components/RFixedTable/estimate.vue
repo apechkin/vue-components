@@ -22,7 +22,7 @@
       </table>
     </div>
     <div class="right-block" :style="{width}">
-      <r-mask ref="mask">
+      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask">
         <table>
           <tbody>
             <tr v-for="est in estTotalContent" :key="`${est.id}`">
