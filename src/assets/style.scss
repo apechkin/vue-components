@@ -96,6 +96,7 @@ $tbl_estimate_height: 358px;
   white-space: nowrap;
   overflow: hidden hidden;
   width: 1200px;
+  border-right: 1px solid $gray_3;
 }
 .left-block-content {
   display: flex;
@@ -112,6 +113,9 @@ $tbl_estimate_height: 358px;
   color: $gray_5;
 }
 .scrolled {
+  background-color: $gray_3;
+}
+.cashflow-total {
   background-color: $gray_3;
 }
 
