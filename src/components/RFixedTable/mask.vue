@@ -1,5 +1,5 @@
 <template>
-  <div id="scroll-mask">
+  <div id="scroll-mask" :style="styles">
     <slot/>
   </div>
 </template>
@@ -8,10 +8,16 @@
   import SimpleBar from 'simplebar'
   import 'simplebar/dist/simplebar.min.css'
   export default {
+    props: {
+      styles: {
+        type: Object,
+        default: () => ({})
+      }
+    },
     mounted () {
       const defaultOptions = {
         autoHide: false,
-        forceVisible: false,
+        forceVisible: true,
         scrollbarMinSize: 25,
         scrollbarMaxSize: 800
       }
@@ -32,7 +38,6 @@
 <style lang="scss">
 @import "../../assets/mixins.scss";
 @import "../../assets/style.scss";
-
 .simplebar-track .simplebar-scrollbar.simplebar-visible:before {
   opacity: 1
 }

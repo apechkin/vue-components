@@ -22,7 +22,10 @@
       </table>
     </div>
     <div class="right-block" :style="{width}">
-      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask">
+      <r-mask
+        @userScroll="evt => $emit('userScroll', evt)"
+        ref="mask"
+        :styles="{'overflow': 'hidden visible'}" >
         <table>
           <tbody>
             <tr v-for="est in estTotalContent" :key="`${uuidv4()}/-${est.id}`">

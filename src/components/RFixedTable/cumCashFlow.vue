@@ -6,19 +6,22 @@
       </div>
     </div>
     <div ref="flow" class="right-block" :style="{width}">
-      <table>
-        <tbody>
-          <tr>
-            <td v-for="(vdata, index) in fundsAndDates" :key="`${uuidv4()}-${index}`">
-              <r-text :value="vdata.fromClient" separate :styles="{'background-color': '#f1f3f5'}">
-                <template v-slot:currency-icon>
-                  {{'$'}}
-                </template>
-              </r-text>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask"
+              :styles="{'overflow': 'visible hidden'}">
+        <table>
+          <tbody>
+            <tr>
+              <td v-for="(vdata, index) in fundsAndDates" :key="`${uuidv4()}-${index}`">
+                <r-text :value="vdata.fromClient" separate :styles="{'background-color': '#f1f3f5'}">
+                  <template v-slot:currency-icon>
+                    {{'$'}}
+                  </template>
+                </r-text>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </r-mask>
     </div>
   </div>
 </template>
@@ -26,6 +29,7 @@
 <script>
   import uuid from 'uuid/v4'
   import RText from '@/RText/index.vue'
+  import RMask from './mask.vue'
   export default {
     props: {
       width: String,
@@ -38,7 +42,8 @@
       }
     },
     components: {
-      RText
+      RText,
+      RMask
     }
   }
 </script>
