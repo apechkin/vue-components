@@ -20,9 +20,10 @@
   }
 </script>
 <style lang="scss">
+  @import "./assets/style.scss";
   html, body {
     height: 100%;
     margin: 0;
-    background-color: #dee2e6;
+    background-color: $gray_2;
   }
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div class="content-block">
-    <div class="left-block">
+    <div class="left-block" :class="{ 'scrolled': isScrollTop }">
       <div class="left-block-content">
         <span>Cost item groups</span>
         <span>Total</span>
       </div>
     </div>
-    <div ref="header" class="right-block" :style="{width}">
+    <div ref="header" class="right-block" :class="{ 'scrolled': isScrollTop }" :style="{width}">
       <table class="header-table">
         <tbody>
           <tr>
@@ -29,7 +29,8 @@
   export default {
     props: {
       width: String,
-      fundsAndDates: Array
+      fundsAndDates: Array,
+      isScrollTop: Boolean
     },
     data () {
       return {

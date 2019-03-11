@@ -1,7 +1,7 @@
 <template>
   <div>
-    <r-header ref="headerTable" :fundsAndDates="fundsAndDates" />
-    <r-income ref="incomeTable" :fundsAndDates="fundsAndDates" />
+    <r-header ref="headerTable" :fundsAndDates="fundsAndDates" :isScrollTop="isScrollTop" />
+    <r-income ref="incomeTable" :fundsAndDates="fundsAndDates" :isScrollTop="isScrollTop" />
     <r-estimate @userScroll="handleUserScroll" ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
   </div>
 </template>
@@ -25,7 +25,8 @@
       return {
         income: null,
         header: null,
-        items: null
+        items: null,
+        isScrollTop: false
       }
     },
     mounted () {
@@ -43,6 +44,8 @@
         evt.preventDefault()
         const scrollLeft = evt.target.scrollLeft
         const scrollTop = evt.target.scrollTop
+        if (scrollTop) this.isScrollTop = true
+        else this.isScrollTop = false
         this.income.scrollLeft = scrollLeft
         this.header.scrollLeft = scrollLeft
         this.items.scrollTop = scrollTop

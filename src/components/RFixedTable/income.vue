@@ -1,11 +1,11 @@
 <template>
   <div class="content-block">
-    <div class="left-block">
+    <div class="left-block" :class="{ 'scrolled': isScrollTop }">
       <div class="left-block-content">
         payment from the client
       </div>
     </div>
-    <div ref="income" class="right-block" :style="{width}">
+    <div ref="income" class="right-block" :class="{ 'scrolled': isScrollTop }" :style="{width}">
       <table>
         <tbody>
           <tr>
@@ -28,7 +28,8 @@
   export default {
     props: {
       width: String,
-      fundsAndDates: Array
+      fundsAndDates: Array,
+      isScrollTop: Boolean
     },
     components: {
       RText
