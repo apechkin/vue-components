@@ -3,7 +3,7 @@
     <div class="left-block" ref="items">
       <table>
         <tbody>
-          <tr v-for="estimate in estimates" :key="estimate.id">
+          <tr v-for="estimate in estimates" :key="`${uuidv4()}-${estimate.id}`">
             <td>
               <div class="estimate-content">
                 <div class="estimate-name" @click="handleClick(estimate.id)">
@@ -25,14 +25,14 @@
       <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask">
         <table>
           <tbody>
-            <tr v-for="est in estTotalContent" :key="`${est.id}`">
-              <td v-for="data in est.totals" :key="`${est.id}-${data.fullDate}`">
+            <tr v-for="est in estTotalContent" :key="`${uuidv4()}/-${est.id}`">
+              <td v-for="data in est.totals" :key="`${uuidv4()}${est.id}-${data.fullDate}`">
                 <edrag-input
                   :dataTransfer="{data, id: est.id, name: est.name}"
                   :value="data.total"
                   @accepted="data => $emit('accepted', {data, id:est.id})"
                   currency="RUR"
-                  :key="`drag-${est.id}-${data.fullDate}`"/>
+                  :key="`${uuidv4()}drag-${est.id}-${data.fullDate}`"/>
               </td>
             </tr>
           </tbody>
@@ -46,11 +46,18 @@
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RText from '@/RText/index.vue'
   import RMask from './mask.vue'
+  import uuid from 'uuid/v4'
   export default {
     props: {
       width: String,
       estimates: Array,
       estTotalContent: Array
+    },
+    data () {
+      const uuidv4 = uuid
+      return {
+        uuidv4
+      }
     },
     components: {
       EdragInput,

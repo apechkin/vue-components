@@ -47,9 +47,6 @@
   text-decoration-style: solid;
   color: $gray_6;
 }
-.r-text {
-  background-color: white;
-}
 .right-block {
   table {
     table-layout: fixed;
