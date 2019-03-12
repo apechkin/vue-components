@@ -81,16 +81,33 @@
   table {
     width: 100%;
     table-layout: fixed;
+    border-collapse: collapse;
   }
 }
 .right-block {
   height: $tbl_estimate_height;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 2px;
+    td {
+      min-height: $tbl_ce_height + 2px;
+      height: $tbl_ce_height + 2px;
+      width: 1px;
+      min-width: 127px;
+      vertical-align: text-bottom;
+      font-size: 12px;
+    }
+  }
 }
 .estimate-content {
   @extend .df-center-jccenter;
   height: 100%;
   width: inherit;
   position: relative;
+  border-bottom: 1px solid $gray_4;
 }
 .estimate-name {
   font-size: 14px;
@@ -109,23 +126,7 @@
   font-size: 12px;
   flex-grow: 0;
   width: 127px;
-  min-height: $tbl_ce_height;
-  height: $tbl_ce_height;
+  min-height: $tbl_ce_height - 1px;
+  height: $tbl_ce_height - 1px;
 }
-.right-block {
-  table {
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 2px;
-    td {
-      min-height: $tbl_ce_height + 2px;
-      height: $tbl_ce_height + 2px;
-      width: 1px;
-      min-width: 127px;
-      vertical-align: text-bottom;
-      font-size: 12px;
-    }
-  }
-}
-
 </style>
