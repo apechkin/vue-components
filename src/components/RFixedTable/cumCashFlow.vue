@@ -10,13 +10,13 @@
         <table>
           <tbody>
             <tr>
-              <td v-for="(vdata, index) in fundsAndDates" :key="`${uuidv4()}-${index}`"
+              <td v-for="(vdata, index) in flowData" :key="`${uuidv4()}-${index}`"
                   :class="{
-                    'green': Number(vdata.fromClient) >= 0,
-                    'red': Number(vdata.fromClient) < 0
+                    'green': Number(vdata.cumulative) >= 0,
+                    'red': Number(vdata.cumulative) < 0
                   }"
               >
-                <r-text :value="vdata.fromClient" separate :styles="{'background-color': '#f1f3f5'}">
+                <r-text :value="vdata.cumulative" separate :styles="{'background-color': '#f1f3f5'}">
                   <template v-slot:currency-icon>
                     <!-- {{'$'}} -->
                   </template>
@@ -37,7 +37,7 @@
   export default {
     props: {
       width: String,
-      fundsAndDates: Array
+      flowData: Array
     },
     data () {
       const uuidv4 = uuid

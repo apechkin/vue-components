@@ -3,8 +3,8 @@
     <r-header ref="headerTable" :fundsAndDates="fundsAndDates" :isScrollTop="isScrollTop" />
     <r-income ref="incomeTable" :fundsAndDates="fundsAndDates" :isScrollTop="isScrollTop" />
     <r-estimate @userScroll="handleUserScroll" ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
-    <r-flow ref="flowTable" :cashByDay="cashByDay" />
-    <r-cumflow ref="cumflowTable" :fundsAndDates="fundsAndDates" />
+    <r-flow ref="flowTable" :flowData="flowData" />
+    <r-cumflow ref="cumflowTable" :flowData="flowData" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@
       fundsAndDates: Array,
       estimates: Array,
       estTotalContent: Array,
-      cashByDay: Array
+      flowData: Array
     },
     data () {
       return {
