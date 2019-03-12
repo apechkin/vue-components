@@ -1,10 +1,25 @@
 <template>
   <div class="content-block">
     <div class="left-block" :class="{ 'scrolled': isScrollTop }">
-      <div class="left-block-content">
-        <span>Cost item groups</span>
-        <span>Total</span>
-      </div>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <div class="left-block-content">
+                <div class="block-content-name">
+                  Cost item groups
+                </div>
+                <div class="block-content-total">
+                  <r-text value="Total" :styles="{'background-color': 'transparent'}" />
+                </div>
+                <div v-show="isUnAllocated" class="block-content-unallocated">
+                  <r-text value="Unallocated" :styles="{'background-color': '#f1f3f5'}" />
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div ref="header" class="right-block" :class="{ 'scrolled': isScrollTop }" :style="{width}">
       <table class="header-table">
@@ -26,11 +41,19 @@
 </template>
 
 <script>
+  import RText from '@/RText/index.vue'
   export default {
     props: {
       width: String,
       fundsAndDates: Array,
-      isScrollTop: Boolean
+      isScrollTop: Boolean,
+      isUnAllocated: {
+        type: Boolean,
+        default: false
+      }
+    },
+    components: {
+      RText
     },
     data () {
       return {
@@ -78,6 +101,40 @@ $blockHeight: 68px;
     table-layout: fixed;
   }
 }
+.left-block {
+  overflow: hidden;
+  table {
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+}
+.left-block-content {
+  @extend .df-center-jccenter;
+  min-height: 1px;
+  height: 100%;
+  width: inherit;
+  position: relative;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 16px;
+  font-style:normal;
+  font-weight:700;
+  color: $gray_6;
+}
+.block-content-name {
+  flex-grow: 1;
+  overflow: hidden;
+  padding-right: 5px;
+}
+.block-content-total, .block-content-unallocated {
+  @extend .df-center-jcend;
+  flex-grow: 0;
+  width: 127px;
+}
+
+/*
 .left-block-content {
   span {
     margin: 0 15px 0 0;
@@ -97,4 +154,5 @@ $blockHeight: 68px;
     right: 0;
   }
 }
+*/
 </style>

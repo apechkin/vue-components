@@ -12,8 +12,8 @@
                 <div class="estimate-total">
                   <r-text value="-1200000" separate :styles="{'background-color': 'transparent'}" />
                 </div>
-                <div class="estimate-unallocated">
-                  <r-text value="80000" separate :styles="{'background-color': '#e9ecef'}" />
+                <div v-show="isUnAllocated" class="estimate-unallocated">
+                  <r-text value="80000" separate :styles="{'background-color': '#f1f3f5'}" />
                 </div>
               </div>
             </td>
@@ -51,7 +51,11 @@
     props: {
       width: String,
       estimates: Array,
-      estTotalContent: Array
+      estTotalContent: Array,
+      isUnAllocated: {
+        type: Boolean,
+        default: false
+      }
     },
     data () {
       const uuidv4 = uuid
