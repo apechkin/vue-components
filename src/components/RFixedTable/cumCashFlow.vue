@@ -6,7 +6,7 @@
       </div>
     </div>
     <div ref="flow" class="right-block" :style="{width}">
-      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask" :styles="{'overflow': 'visible visible'}" >
+      <r-mask>
         <table>
           <tbody>
             <tr>
