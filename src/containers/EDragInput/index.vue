@@ -17,6 +17,8 @@
         :entered="entered"
         :value="componentValue"
         @change="handleChangeValue"
+        :sign="sign"
+        class="est-hovered"
       >
         <template v-slot:edit-icon>
           <redit-icon
@@ -53,7 +55,8 @@
         type: Boolean,
         default: true
       },
-      dataTransfer: Object
+      dataTransfer: Object,
+      sign: String
     },
     data () {
       return {

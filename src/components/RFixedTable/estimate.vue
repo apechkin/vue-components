@@ -10,7 +10,7 @@
                   {{estimate.name}}
                 </div>
                 <div class="estimate-total">
-                  <r-text value="-1200000" separate :styles="{'background-color': 'transparent'}" />
+                  <r-text value="1200000" separate sign="-" :styles="{'background-color': 'transparent'}" />
                 </div>
                 <div v-show="isUnAllocated" class="estimate-unallocated">
                   <r-text value="80000" separate :styles="{'background-color': '#f1f3f5'}" />
@@ -32,6 +32,7 @@
                   :value="data.total"
                   @accepted="data => $emit('accepted', {data, id:est.id})"
                   currency="RUR"
+                  sign="-"
                   :key="`${uuidv4()}drag-${est.id}-${data.fullDate}`"/>
               </td>
             </tr>

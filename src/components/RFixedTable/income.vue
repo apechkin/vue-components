@@ -10,7 +10,7 @@
         <tbody>
           <tr>
             <td v-for="(vdata, index) in fundsAndDates" :key="`income_${index}`">
-              <r-text :value="vdata.fromClient" separate >
+              <r-text :value="vdata.fromClient" separate sign="+">
                 <template v-slot:currency-icon>
                   {{'$'}}
                 </template>

@@ -51,7 +51,8 @@
       bbox: {
         type: Boolean,
         default: false
-      }
+      },
+      sign: String
     },
     data () {
       return {
@@ -75,7 +76,7 @@
       },
       fakeValue () {
         const { proxy, type } = this
-        if (proxy && type === 'number') return String(proxy).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+        if (proxy && type === 'number') return `${this.sign ? this.sign : ''}` + String(proxy).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
         else return proxy
       },
       computedStyle () {
@@ -143,6 +144,9 @@
     @extend .df-center-jcend ;
     font-size: 12px;
     width: calcSize($tbl_header_width, $currencyIcon);
+  }
+  .est-hovered:hover {
+    font-weight: 700;
   }
   .entered {
     opacity: 1;

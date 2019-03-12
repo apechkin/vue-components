@@ -17,10 +17,7 @@
         type: Boolean,
         default: false
       },
-      sign: {
-        type: Boolean,
-        default: false
-      },
+      sign: String,
       styles: {
         type: Object,
         default: () => ({})
@@ -29,17 +26,8 @@
     computed: {
       textValue () {
         const { separate, value } = this
-        let isLower = null
         if (separate) {
-          if (this.sign) {
-            if (typeof value === 'number' && value > 0) isLower = false
-            else if (typeof value === 'number' && value < 0) isLower = true
-            else if (typeof value === 'string') {
-              if (Number(value) > 0) isLower = false
-              else if (Number(value) < 0) isLower = true
-            }
-          }
-          return `${(isLower === null) ? `` : isLower ? `-` : `+`}` + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ')
+          return `${this.sign ? this.sign : ''}` + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ')
         } else {
           return value
         }
