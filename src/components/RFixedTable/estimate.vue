@@ -22,10 +22,7 @@
       </table>
     </div>
     <div class="right-block" :style="{width}">
-      <r-mask
-        @userScroll="evt => $emit('userScroll', evt)"
-        ref="mask"
-        :styles="{'overflow': 'hidden visible'}" >
+      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask">
         <table>
           <tbody>
             <tr v-for="est in estTotalContent" :key="`${uuidv4()}/-${est.id}`">
@@ -48,7 +45,7 @@
 <script>
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RText from '@/RText/index.vue'
-  import RMask from './mask.vue'
+  import RMask from '@/RScroll/index.vue'
   import uuid from 'uuid/v4'
   export default {
     props: {

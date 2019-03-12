@@ -17,7 +17,6 @@
     mounted () {
       const defaultOptions = {
         autoHide: false,
-        forceVisible: true,
         scrollbarMinSize: 25,
         scrollbarMaxSize: 800
       }

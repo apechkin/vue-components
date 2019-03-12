@@ -6,8 +6,7 @@
       </div>
     </div>
     <div ref="flow" class="right-block" :style="{width}">
-      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask"
-              :styles="{'overflow': 'visible hidden'}">
+      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask" :styles="{'overflow': 'visible visible'}" >
         <table>
           <tbody>
             <tr>
@@ -29,7 +28,7 @@
 <script>
   import uuid from 'uuid/v4'
   import RText from '@/RText/index.vue'
-  import RMask from './mask.vue'
+  import RMask from '@/RScroll/index.vue'
   export default {
     props: {
       width: String,
