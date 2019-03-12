@@ -26,7 +26,11 @@
     />
     <!-- <rfixed-table/> -->
     <hr>
-    <e-table :fundsAndDates="fundsAndDates" :estimates="estimates" :estTotalContent="estTotalContent" />
+    <e-table
+      :fundsAndDates="fundsAndDates"
+      :estimates="estimates"
+      :estTotalContent="estTotalContent"
+      :cashByDay="cashByDay" />
   </div>
 </template>
 
@@ -35,7 +39,7 @@
   import RSelect from '@/RSelect'
   import { calendar, costItems } from './fakeData.js'
   import { filterByWeek, filterByMonth, filterByYear } from '~/helpers/dateFilters.js'
-  import { mapEstToDate } from '~/helpers/mapper.js'
+  import { mapEstToDate, cashFlowByDay, cummulative } from '~/helpers/mapper.js'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
     directives: {
@@ -128,7 +132,6 @@
         }
       },
       handleWeekOption (val) {
-        console.log(val)
         this.selectedOption = val
       }
     },
@@ -156,6 +159,11 @@
       },
       estTotalContent () {
         const data = mapEstToDate(this.est, this.fundsAndDates)
+        return data
+      },
+      cashByDay () {
+        const data = cashFlowByDay(this.est, this.fundsAndDates)
+        console.log(data)
         return data
       }
     }

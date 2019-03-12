@@ -43,6 +43,7 @@ export const filterByWeek = (data) => {
     })
     return months
   })
+  // console.log(flatten(filtered))
   return flatten(filtered)
 }
 
@@ -60,6 +61,7 @@ export const filterByMonth = (data) => {
     })
     return months
   })
+  // console.log(flatten(filtered))
   return flatten(filtered)
 }
 
@@ -76,5 +78,6 @@ export const filterByYear = (data) => {
     })
     return months
   })
+  // console.log(flatten(filtered))
   return flatten(filtered)
 }
