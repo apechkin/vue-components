@@ -22,7 +22,7 @@ DatePicker.prototype.getUnique = function (value) {
   if (!this.unique) this.unique = value
 }
 
-const flatten = list => list.reduce(
+export const flatten = list => list.reduce(
   (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
 )
 
