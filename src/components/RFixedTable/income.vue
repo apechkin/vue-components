@@ -9,7 +9,7 @@
       <table>
         <tbody>
           <tr>
-            <td v-for="(vdata, index) in fundsAndDates" :key="`income_${index}`">
+            <td v-for="(vdata, index) in income" :key="`income_${index}`">
               <r-text :value="vdata.fromClient" separate sign="+">
                 <template v-slot:currency-icon>
                   {{'$'}}
@@ -28,7 +28,7 @@
   export default {
     props: {
       width: String,
-      fundsAndDates: Array,
+      income: Array,
       isScrollTop: Boolean
     },
     components: {

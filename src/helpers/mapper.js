@@ -34,6 +34,40 @@ const getWeek = (dateIN) => {
   return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7)
 }
 
+const postProcess = (data) => {
+  if (Array.isArray(data) && data.length < 10) {
+    data.push({
+      value: 0
+    })
+  }
+}
+
+export const mapIncomeToDate = (calendar, income, filter) => {
+  let incSnap = [...income]
+  switch (filter) {
+    case 'weeks':
+      return calendar.map((elem) => {
+        let inx = []
+        const fromClient = incSnap.filter((inc, index) => {
+          if (String(elem.fullDate) === String(inc.fullDate)) {
+            inx.push(index)
+            return inc
+          }
+        }).reduce((acc, cur) => {
+          return Number(acc) + Number(cur.fromClient)
+        }, 0)
+        if (inx.length) {
+          inx.forEach(i => {
+            incSnap.splice(i, 1)
+          })
+        }
+        return { fullDate: elem.fullDate, fromClient }
+      })
+    default:
+      break
+  }
+}
+
 export const mapEstToDate = (estimates, dates, filter) => {
   try {
     checkParam(dates)
