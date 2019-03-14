@@ -72,6 +72,7 @@ $tbl_ce_height: 48px;
 $tbl_header_width: 127px;
 $currencyIcon: 20px;
 $tbl_estimate_height: 358px;
+$max-rigth-block: 1200px;
 
 // r-fixed-table
 .content-block {
@@ -95,8 +96,7 @@ $tbl_estimate_height: 358px;
   height: $tbl_header_height;
   white-space: nowrap;
   overflow: hidden hidden;
-  width: 1200px;
-  border-right: 1px solid $gray_3;
+  max-width: $max-rigth-block;
 }
 .left-block-content {
   display: flex;
