@@ -26,20 +26,24 @@
     />
     <!-- <rfixed-table/> -->
     <hr>
-    <e-table
-      :fundsAndDates="fundsAndDates"
-      :estimates="estimates"
-      :estTotalContent="estTotalContent"
-      :flowData="flowData" />
+    <button @click.prevent="handleGenCalendar">click on me</button>
+    <hr>
+    <e-table v-if="initiated"
+             :calendar="computeCalendar"
+             :incomeClient="computeIncome"
+             :estimates="estimates"
+             :estTotalContent="estTotalContent"
+             :flowData="flowData" />
   </div>
 </template>
 
 <script>
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RSelect from '@/RSelect'
-  import { calendar, costItems } from './fakeData.js'
+  import { clientData, calendar, costItems } from './fakeData.js'
   import { filterByWeek, filterByMonth, filterByYear } from '~/helpers/dateFilters.js'
-  import { mapEstToDate, cashFlow } from '~/helpers/mapper.js'
+  import { mapIncomeToDate, mapEstToDate, cashFlow } from '~/helpers/mapper.js'
+  import { analize, initWeekCalendar } from '~/helpers/calendar.js'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
     directives: {
@@ -61,6 +65,13 @@
       ETable
     },
     data () {
+      let initiated = false
+      let gCalendar = {
+        weeks: null,
+        months: null,
+        years: null
+      }
+      let incomeFromClient = null
       return {
         dates: [29, 30, 31, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         items: [
@@ -100,11 +111,20 @@
           label: 'Years',
           value: 'years'
         }],
-        est: []
+        est: [],
+        initiated,
+        gCalendar,
+        incomeFromClient,
+        wCalendar: {
+          data: [],
+          firstWeekDay: null,
+          lastWeekDay: null
+        }
       }
     },
-    created () {
+    async created () {
       this.est = costItems()
+      await this.init()
     },
     mounted () {
       /*
@@ -117,6 +137,17 @@
       */
     },
     methods: {
+      async init () {
+        this.initiated = false
+        this.incomeFromClient = await clientData()
+        const { minDate, maxDate } = await analize(this.incomeFromClient)
+        this.gCalendar['weeks'] = initWeekCalendar(this.wCalendar, minDate, maxDate)
+        console.log('init weeks:', this.gCalendar['weeks'])
+        this.initiated = true
+      },
+      handleGenCalendar () {
+        console.log('handle:', initWeekCalendar())
+      },
       hadleScroll (e) {
         console.log(e)
       },
@@ -136,6 +167,15 @@
       }
     },
     computed: {
+      computeCalendar () {
+        const { selectedOption } = this
+        return this.gCalendar[selectedOption]
+      },
+      computeIncome () {
+        const { selectedOption, incomeFromClient, gCalendar } = this
+        const data = mapIncomeToDate(gCalendar[selectedOption], incomeFromClient, selectedOption)
+        return data
+      },
       fundsAndDates () {
         const { selectedOption } = this
         let data = []
