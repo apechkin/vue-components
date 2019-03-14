@@ -25,12 +25,12 @@
       <table class="header-table">
         <tbody>
           <tr>
-            <td v-for="(vdata, index) in fundsAndDates" :key="`headLine_${index}`">
+            <td v-for="(vdata, index) in calendar" :key="`headLine_${index}`">
               <div class="header-sub"><strong>{{vdata.headLine}}</strong></div>
             </td>
           </tr>
           <tr>
-            <td v-for="(vdata, index) in fundsAndDates" :key="`dateValue_${index}`">
+            <td v-for="(vdata, index) in calendar" :key="`dateValue_${index}`">
               <div class="header-date">{{vdata.dateValue}}</div>
             </td>
           </tr>
@@ -45,7 +45,7 @@
   export default {
     props: {
       width: String,
-      fundsAndDates: Array,
+      calendar: Array,
       isScrollTop: Boolean,
       isUnAllocated: {
         type: Boolean,
