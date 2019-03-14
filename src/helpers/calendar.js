@@ -10,7 +10,7 @@ const currentWeek = (inDate = null) => {
     const nextDay = moment(firstWeekDay).add(k, 'd')
     const headLine = k === 0 ? `week ${moment(nextDay).isoWeek()}, ${moment(nextDay).date()} ${monthNames[moment(nextDay).month()]}` : ``
     return {
-      fullDate: `${moment(nextDay).format('DD-MM-YYYY')}`,
+      fullDate: `${moment(nextDay).format('YYYY-MM-DD')}`,
       dateValue: moment(nextDay).date(),
       week: moment(nextDay).isoWeek(),
       month: monthNames[moment(nextDay).month()],
@@ -29,7 +29,7 @@ export const nextWeek = ({ lastWeekDay: lastDay }) => {
     const nextDay = moment(firstWeekDay).add(k, 'd')
     const headLine = k === 0 ? `week ${moment(nextDay).isoWeek()}, ${moment(nextDay).date()} ${monthNames[moment(nextDay).month()]}` : ``
     return {
-      fullDate: `${moment(nextDay).format('DD-MM-YYYY')}`,
+      fullDate: `${moment(nextDay).format('YYYY-MM-DD')}`,
       dateValue: moment(nextDay).date(),
       week: moment(nextDay).isoWeek(),
       month: monthNames[moment(nextDay).month()],
@@ -48,7 +48,7 @@ export const prevWeek = ({ firstWeekDay: firstDay }) => {
     const nextDay = moment(firstWeekDay).add(k, 'd')
     const headLine = k === 0 ? `week ${moment(nextDay).isoWeek()}, ${moment(nextDay).date()} ${monthNames[moment(nextDay).month()]}` : ``
     return {
-      fullDate: `${moment(nextDay).format('DD-MM-YYYY')}`,
+      fullDate: `${moment(nextDay).format('YYYY-MM-DD')}`,
       dateValue: moment(nextDay).date(),
       week: moment(nextDay).isoWeek(),
       month: monthNames[moment(nextDay).month()],
@@ -60,13 +60,7 @@ export const prevWeek = ({ firstWeekDay: firstDay }) => {
   })
 }
 
-let wCalendar = {
-  data: [],
-  firstWeekDay: null,
-  lastWeekDay: null
-}
-
-export const initWeekCalendar = (start, finish) => {
+export const initWeekCalendar = (wCalendar, start = null, finish = null) => {
   if (start && finish) {
     const current = currentWeek(start)
     wCalendar.data.push(current)
@@ -77,7 +71,6 @@ export const initWeekCalendar = (start, finish) => {
     while (moment(wCalendar['lastWeekDay']).isBefore(finish)) {
       if (!s) {
         next = nextWeek(current[0])
-        console.log(next)
         wCalendar['lastWeekDay'] = next[0]['lastWeekDay']
         wCalendar.data.push(next)
         s++
