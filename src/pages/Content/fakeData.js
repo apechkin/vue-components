@@ -1,3 +1,29 @@
+export const clientData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(fromClient)
+    }, 2000)
+  })
+}
+const fromClient = [
+  {
+    fullDate: '2018-12-31',
+    fromClient: 150145952
+  },
+  {
+    fullDate: '2019-01-01',
+    fromClient: 240850000
+  },
+  {
+    fullDate: '2019-01-06',
+    fromClient: 6520020
+  },
+  {
+    fullDate: '2019-02-14',
+    fromClient: 1255489
+  }
+]
+
 export const calendar = () => {
   return [{
     year: 2019,
@@ -411,10 +437,10 @@ export const costItems = () => {
       name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
       values: [{
         date: '2018-02-03',
-        value: 4512
+        value: 45122
       }, {
         date: '2019-02-15',
-        value: 6521
+        value: 68521
       }]
     },
     {
