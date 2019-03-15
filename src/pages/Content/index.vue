@@ -42,7 +42,7 @@
   import RSelect from '@/RSelect'
   import { clientData, calendar, costItems } from './fakeData.js'
   import { filterByWeek, filterByMonth, filterByYear } from '~/helpers/dateFilters.js'
-  import { mapIncomeToDate, mapEstToDate, cashFlow } from '~/helpers/mapper.js'
+  import { mapIncomeToDate, mapEstToDate, mapEstToDateNew, cashFlow } from '~/helpers/mapper.js'
   import { analize, initWeekCalendar } from '~/helpers/calendar.js'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
@@ -142,7 +142,6 @@
         this.incomeFromClient = await clientData()
         const { minDate, maxDate } = await analize(this.incomeFromClient)
         this.gCalendar['weeks'] = initWeekCalendar(this.wCalendar, minDate, maxDate)
-        console.log('init weeks:', this.gCalendar['weeks'])
         this.initiated = true
       },
       handleGenCalendar () {
@@ -198,8 +197,9 @@
         return costItems()
       },
       estTotalContent () {
-        const data = mapEstToDate(this.est, this.fundsAndDates, this.selectedOption)
-        console.log('maptodate:', data)
+        const { selectedOption, est, gCalendar } = this
+        const data = mapEstToDateNew(gCalendar[selectedOption], est, selectedOption)
+        // const data = mapEstToDate(this.est, this.fundsAndDates, this.selectedOption)
         return data
       },
       flowData () {

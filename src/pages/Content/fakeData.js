@@ -338,7 +338,7 @@ export const costItems = () => {
   return [
     {
       id: 1514,
-      name: 'Do excepteur est culpa et commodo duis.',
+      name: '1Do excepteur est culpa et commodo duis.',
       values: [{
         date: '2018-12-31',
         value: 15000
@@ -358,7 +358,7 @@ export const costItems = () => {
     },
     {
       id: 2256,
-      name: 'Do excepteur est culpa et commodo duis.',
+      name: '2Do excepteur est culpa et commodo duis.',
       values: [{
         date: '2018-01-01',
         value: 18000
@@ -378,7 +378,7 @@ export const costItems = () => {
     },
     {
       id: 4587,
-      name: 'Do excepteur est culpa et commodo duis.',
+      name: '3Do excepteur est culpa et commodo duis.',
       values: [{
         date: '2018-12-31',
         value: 5000
@@ -398,9 +398,9 @@ export const costItems = () => {
     },
     {
       id: 9512,
-      name: 'Do excepteur est culpa et commodo duis.',
+      name: '4Do excepteur est culpa et commodo duis.',
       values: [{
-        date: '2018-01-20',
+        date: '2019-01-20',
         value: 95230
       }, {
         date: '2019-01-26',
@@ -412,9 +412,9 @@ export const costItems = () => {
     },
     {
       id: 95147,
-      name: 'Do excepteur est culpa et commodo duis.',
+      name: '5Do excepteur est culpa et commodo duis.',
       values: [{
-        date: '2018-02-03',
+        date: '2019-02-03',
         value: 85413
       }, {
         date: '2019-02-15',
@@ -423,9 +423,9 @@ export const costItems = () => {
     },
     {
       id: 65684,
-      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      name: '6Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
       values: [{
-        date: '2018-02-03',
+        date: '2019-02-03',
         value: 4512
       }, {
         date: '2019-02-15',
@@ -434,9 +434,9 @@ export const costItems = () => {
     },
     {
       id: 65685,
-      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      name: '7Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
       values: [{
-        date: '2018-02-03',
+        date: '2019-02-03',
         value: 45122
       }, {
         date: '2019-02-15',
@@ -445,9 +445,9 @@ export const costItems = () => {
     },
     {
       id: 65686,
-      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      name: '8Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
       values: [{
-        date: '2018-02-03',
+        date: '2019-02-03',
         value: 4512
       }, {
         date: '2019-02-15',
@@ -456,9 +456,9 @@ export const costItems = () => {
     },
     {
       id: 65687,
-      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      name: '9Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
       values: [{
-        date: '2018-02-03',
+        date: '2019-02-03',
         value: 4512
       }, {
         date: '2019-02-15',
@@ -467,9 +467,9 @@ export const costItems = () => {
     },
     {
       id: 65688,
-      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      name: '10Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
       values: [{
-        date: '2018-02-03',
+        date: '2019-02-03',
         value: 4512
       }, {
         date: '2019-02-15',
@@ -478,9 +478,9 @@ export const costItems = () => {
     },
     {
       id: 65689,
-      name: 'Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
+      name: '11Amet est dolore velit magna proident nostrud ipsum ad occaecat laboris dolore irure ipsum.',
       values: [{
-        date: '2018-02-03',
+        date: '2019-02-03',
         value: 4512
       }, {
         date: '2019-02-15',

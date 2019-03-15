@@ -26,6 +26,18 @@
         <table>
           <tbody>
             <tr v-for="est in estTotalContent" :key="`${uuidv4()}/-${est.id}`">
+              <td v-for="data in est.calendar" :key="`${uuidv4()}${est.id}-${data.fullDate}`">
+                <edrag-input
+                  :dataTransfer="{data, id: est.id, name: est.name}"
+                  :value="data.total"
+                  @accepted="data => $emit('accepted', {data, id:est.id})"
+                  currency="RUR"
+                  sign="-"
+                  :key="`${uuidv4()}drag-${est.id}-${data.fullDate}`"/>
+              </td>
+            </tr>
+            <!--
+            <tr v-for="est in estTotalContent" :key="`${uuidv4()}/-${est.id}`">
               <td v-for="data in est.totals" :key="`${uuidv4()}${est.id}-${data.fullDate}`">
                 <edrag-input
                   :dataTransfer="{data, id: est.id, name: est.name}"
@@ -36,6 +48,7 @@
                   :key="`${uuidv4()}drag-${est.id}-${data.fullDate}`"/>
               </td>
             </tr>
+            -->
           </tbody>
         </table>
       </r-mask>
@@ -52,7 +65,7 @@
     props: {
       width: String,
       estimates: Array,
-      estTotalContent: Array,
+      estTotalContent: Object,
       isUnAllocated: {
         type: Boolean,
         default: false

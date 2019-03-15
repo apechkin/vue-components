@@ -26,7 +26,7 @@
       calendar: Array,
       incomeClient: Array,
       estimates: Array,
-      estTotalContent: Array,
+      estTotalContent: Object,
       flowData: Array
     },
     data () {
