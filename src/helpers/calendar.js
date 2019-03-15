@@ -109,6 +109,27 @@ export const analize = (data = []) => {
   }
 }
 
+export const analizeEstimate = (data = []) => {
+  if (Array.isArray(data) && data.length > 0) {
+    let min = moment()
+    let max = moment()
+    // смотрим есть ли данные по клиенту
+    const dates = data.forEach((elem, index) => {
+      if (index === 0) min = max = elem.date
+      const { values } = elem
+      values.forEach(v => {
+        if (moment(v.data, 'YYYY-MM-DD').isBefore(min)) min = v.data
+        if (moment(v.data, 'YYYY-MM-DD').isAfter(max)) max = v.data
+      })
+      return moment(elem.fullDate, 'YYYY-MM-DD')
+    })
+    return { minDate: min, maxDate: max }
+  } else {
+    // если данных по клиенту нет, то инициализация по стандарту
+    return { minDate: null, maxDate: null }
+  }
+}
+
 export const calendar = (key = 'weeks') => {
   const date = moment().date() // дата в месяце число от 1 до 31
   const day = moment().day()
