@@ -79,7 +79,7 @@ export const mapIncomeToDate = (calendar, income, filter) => {
         value: 35000000
       }
 */
-export const mapEstToDateNew = (calendar, estimate, filter) => {
+export const mapEstToDate = (calendar, estimate, filter) => {
   checkParam(calendar)
   checkParam(estimate)
   let estimateSnap = [...estimate]
@@ -114,6 +114,22 @@ export const mapEstToDateNew = (calendar, estimate, filter) => {
   }
 }
 
+export const mapEstToClient = (income, est) => {
+  checkParam(income)
+  let cumulative = 0
+  return income.map((elem, inx) => {
+    let cashFlow = 0
+    let estTotal = 0
+    for (const prop in est) {
+      estTotal += Number(est[prop]['calendar'][inx]['total'])
+    }
+    cashFlow = Number(elem.fromClient) - Number(estTotal)
+    cumulative = cumulative + cashFlow
+    return { fullDate: elem.fullDate, cashFlow, cumulative }
+  })
+}
+
+/*
 export const mapEstToDate = (estimates, dates, filter) => {
   try {
     checkParam(dates)
@@ -142,6 +158,7 @@ export const mapEstToDate = (estimates, dates, filter) => {
     throw error
   }
 }
+*/
 
 /**
  * Calculate cashflow by day

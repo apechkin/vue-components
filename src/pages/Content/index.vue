@@ -32,8 +32,9 @@
              :calendar="computeCalendar"
              :incomeClient="computeIncome"
              :estimates="estimates"
-             :estTotalContent="estTotalContent"
-             :flowData="flowData" />
+             :estTotalContent="computeEstimate"
+             :flowDataNew="computeCashFlow"
+             :flowData="computeCashFlow" />
   </div>
 </template>
 
@@ -41,8 +42,15 @@
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RSelect from '@/RSelect'
   import { clientData, calendar, costItems } from './fakeData.js'
-  import { filterByWeek, filterByMonth, filterByYear } from '~/helpers/dateFilters.js'
-  import { mapIncomeToDate, mapEstToDate, mapEstToDateNew, cashFlow } from '~/helpers/mapper.js'
+  import {
+    filterByWeek,
+    filterByMonth,
+    filterByYear } from '~/helpers/dateFilters.js'
+  import {
+    mapIncomeToDate,
+    mapEstToDate,
+    mapEstToClient,
+    cashFlow } from '~/helpers/mapper.js'
   import { analize, analizeEstimate, initWeekCalendar, minMaxDate } from '~/helpers/calendar.js'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
@@ -177,6 +185,11 @@
         const data = mapIncomeToDate(gCalendar[selectedOption], incomeFromClient, selectedOption)
         return data
       },
+      computeCashFlow () {
+        const { computeIncome, computeEstimate } = this
+        const data = mapEstToClient(computeIncome, computeEstimate)
+        return data
+      },
       fundsAndDates () {
         const { selectedOption } = this
         let data = []
@@ -198,10 +211,9 @@
       estimates () {
         return costItems()
       },
-      estTotalContent () {
+      computeEstimate () {
         const { selectedOption, est, gCalendar } = this
-        const data = mapEstToDateNew(gCalendar[selectedOption], est, selectedOption)
-        // const data = mapEstToDate(this.est, this.fundsAndDates, this.selectedOption)
+        const data = mapEstToDate(gCalendar[selectedOption], est, selectedOption)
         return data
       },
       flowData () {

@@ -360,7 +360,7 @@ export const costItems = () => {
       id: 2256,
       name: '2Do excepteur est culpa et commodo duis.',
       values: [{
-        date: '2018-01-01',
+        date: '2018-12-25',
         value: 18000
       }, {
         date: '2019-01-02',
