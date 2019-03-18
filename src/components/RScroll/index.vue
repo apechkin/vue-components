@@ -16,6 +16,13 @@
       dataDef: {
         type: String,
         default: 'estimate'
+      },
+      setScrollLeft: [Number, String],
+      setScrollTop: [Number, String],
+    },
+    data() {
+      return {
+        el: null
       }
     },
     mounted () {
@@ -24,16 +31,24 @@
         scrollbarMinSize: 25,
         scrollbarMaxSize: 800
       }
-      const el = new SimpleBar(document.getElementById('scroll-mask'), defaultOptions)
-      el.getScrollElement().addEventListener('scroll', this.handleScroll)
+      this.el = new SimpleBar(document.getElementById('scroll-mask'), defaultOptions)
+      this.el.getScrollElement().addEventListener('scroll', this.handleScroll)
+      if (Number(this.setScrollLeft)) {
+        this.el.getScrollElement().scrollTo(this.setScrollLeft || 0, this.setScrollTop || 0);
+      }
     },
     beforeDestroy () {
       document.removeEventListener('scroll', this.handleScroll)
+      this.el = null
     },
     methods: {
       handleScroll (evt) {
         this.$emit('userScroll', evt)
       }
+    },
+    updated() {
+      this.el.getScrollElement().scrollTo(this.$store.state.calendar.scroll, this.setScrollTop || 0);
+      console.log('setScrollLeft:', this.setScrollLeft);
     }
   }
 </script>

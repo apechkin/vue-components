@@ -22,7 +22,7 @@
       </table>
     </div>
     <div class="right-block" :style="{width}">
-      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask">
+      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask" :setScrollLeft="setScrollLeft">
         <table>
           <tbody>
             <tr v-for="est in estTotalContent" :key="`${uuidv4()}/-${est.id}`">
@@ -69,7 +69,8 @@
       isUnAllocated: {
         type: Boolean,
         default: false
-      }
+      },
+      setScrollLeft: [Number, String]
     },
     data () {
       const uuidv4 = uuid
