@@ -98,35 +98,49 @@ export const initWeekCalendar = (wCalendar, start = null, finish = null) => {
 
 export const analize = (data = []) => {
   if (Array.isArray(data) && data.length > 0) {
-    // смотрим есть ли данные по клиенту
     const dates = data.map(elem => {
       return moment(elem.fullDate, 'YYYY-MM-DD')
     })
     return { minDate: moment.min(dates), maxDate: moment.max(dates) }
   } else {
-    // если данных по клиенту нет, то инициализация по стандарту
     return { minDate: null, maxDate: null }
   }
 }
 
 export const analizeEstimate = (data = []) => {
   if (Array.isArray(data) && data.length > 0) {
-    let min = moment()
-    let max = moment()
-    // смотрим есть ли данные по клиенту
-    const dates = data.forEach((elem, index) => {
-      if (index === 0) min = max = elem.date
+    let min = null
+    let max = null
+    data.forEach((elem, index) => {
       const { values } = elem
-      values.forEach(v => {
-        if (moment(v.data, 'YYYY-MM-DD').isBefore(min)) min = v.data
-        if (moment(v.data, 'YYYY-MM-DD').isAfter(max)) max = v.data
+      values.forEach((v, inx) => {
+        if (index === 0 && inx === 0) min = max = moment(v.date, 'YYYY-MM-DD')
+        if (moment(v.date, 'YYYY-MM-DD').isBefore(min)) min = moment(v.date, 'YYYY-MM-DD')
+        if (moment(v.date, 'YYYY-MM-DD').isAfter(max)) max = moment(v.date, 'YYYY-MM-DD')
       })
-      return moment(elem.fullDate, 'YYYY-MM-DD')
     })
     return { minDate: min, maxDate: max }
   } else {
-    // если данных по клиенту нет, то инициализация по стандарту
     return { minDate: null, maxDate: null }
+  }
+}
+
+export const minMaxDate = (dates) => {
+  if (Array.isArray(dates)) {
+    if (dates.length > 0) {
+      return {
+        min: moment.min(dates),
+        max: moment.max(dates)
+      }
+    } else {
+      return {
+        min: moment(), max: moment()
+      }
+    }
+  } else {
+    return {
+      min: null, max: null
+    }
   }
 }
 

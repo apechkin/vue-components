@@ -43,7 +43,7 @@
   import { clientData, calendar, costItems } from './fakeData.js'
   import { filterByWeek, filterByMonth, filterByYear } from '~/helpers/dateFilters.js'
   import { mapIncomeToDate, mapEstToDate, mapEstToDateNew, cashFlow } from '~/helpers/mapper.js'
-  import { analize, initWeekCalendar } from '~/helpers/calendar.js'
+  import { analize, analizeEstimate, initWeekCalendar, minMaxDate } from '~/helpers/calendar.js'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
     directives: {
@@ -123,7 +123,6 @@
       }
     },
     async created () {
-      this.est = costItems()
       await this.init()
     },
     mounted () {
@@ -140,8 +139,11 @@
       async init () {
         this.initiated = false
         this.incomeFromClient = await clientData()
-        const { minDate, maxDate } = await analize(this.incomeFromClient)
-        this.gCalendar['weeks'] = initWeekCalendar(this.wCalendar, minDate, maxDate)
+        this.est = await costItems()
+        const { minDate: minDateClient, maxDate: maxDateClient } = analize(this.incomeFromClient)
+        const { minDate: minDateEst, maxDate: maxDateEst } = analizeEstimate(this.est)
+        const { min, max } = minMaxDate([minDateClient, minDateEst, maxDateClient, maxDateEst])
+        this.gCalendar['weeks'] = initWeekCalendar(this.wCalendar, min, max)
         this.initiated = true
       },
       handleGenCalendar () {
