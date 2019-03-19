@@ -2,7 +2,7 @@
   <div>
     <r-header ref="headerTable" :calendar="calendar" :isScrollTop="isScrollTop" />
     <r-income ref="incomeTable" :income="incomeClient" :isScrollTop="isScrollTop" />
-    <r-estimate :setScrollLeft="prevScroll" @userScroll="handleUserScroll" ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
+    <r-estimate :setScrollLeft="prevScroll" @userScroll="handleUserScroll" @xReachEnd="addNewDates" ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
     <r-flow ref="flowTable" :flowData="flowData" />
     <r-cumflow ref="cumflowTable" :flowData="flowData" />
   </div>
@@ -62,24 +62,12 @@
       this.cumflow = null
     },
     methods: {
-      async handleNextDates() {
+      async handleNextDates () {
         await this.getNextDates()
       },
       async handleUserScroll (evt) {
         evt.preventDefault()
         const scrollLeft = evt.target.scrollLeft
-        //commit('setFromEst', this.dataTransfer)
-        if (this.contentWidth - scrollLeft < this.contentVisibleWidth && !this.wait) {
-          if(!this.$store.state.calendar.isLoading) {
-             this.$store.commit('setLoading', true)
-            this.$store.commit('setScroll', scrollLeft)
-            await debounce(this.handleNextDates(), 3000)
-          }
-          setTimeout(() => {
-            this.$store.commit('setLoading', false)
-          }, 3000);
-        }
-        console.log('scroll on:', scrollLeft);
         const scrollTop = evt.target.scrollTop
         if (scrollTop) this.isScrollTop = true
         else this.isScrollTop = false
@@ -88,6 +76,15 @@
         this.flow.scrollLeft = scrollLeft
         this.cumflow.scrollLeft = scrollLeft
         this.items.scrollTop = scrollTop
+      },
+      async addNewDates (evt) {
+        if (!this.$store.state.calendar.isLoading) {
+          this.$store.commit('setLoading', true)
+          this.$nextTick(this.handleNextDates)
+        }
+        setTimeout(() => {
+          this.$store.commit('setLoading', false)
+        }, 2000)
       }
     },
     computed: {

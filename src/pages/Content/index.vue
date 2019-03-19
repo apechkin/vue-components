@@ -33,7 +33,6 @@
              :incomeClient="computeIncome"
              :estimates="estimates"
              :estTotalContent="computeEstimate"
-             :flowDataNew="computeCashFlow"
              :flowData="computeCashFlow"
              :getNextDates="getNextDates" />
   </div>
@@ -161,7 +160,6 @@
         this.initiated = true
       },
       handleGenCalendar () {
-        const data = this.gCalendar['weeks']
         const { wCalendar } = this
         const next = nextWeek(this.wCalendar)
         wCalendar['lastWeekDay'] = next[0]['lastWeekDay']
@@ -185,14 +183,11 @@
       handleWeekOption (val) {
         this.selectedOption = val
       },
-      getNextDates() {
-        const data = this.gCalendar['weeks']
+      getNextDates () {
         const { wCalendar } = this
         const next = nextWeek(this.wCalendar)
         wCalendar['lastWeekDay'] = next[0]['lastWeekDay']
         this.gCalendar['weeks'] = this.gCalendar['weeks'].concat(next)
-        // res = nextWeek(this.gCalendar['weeks'][0])
-        // console.log(this.gCalendar['weeks'][0])
       }
     },
     computed: {
