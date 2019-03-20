@@ -2,7 +2,7 @@ export const clientData = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(fromClient)
-    }, 2000)
+    }, 1000)
   })
 }
 const fromClient = [

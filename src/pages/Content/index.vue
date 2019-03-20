@@ -33,8 +33,8 @@
              :incomeClient="computeIncome"
              :estimates="estimates"
              :estTotalContent="computeEstimate"
-             :flowDataNew="computeCashFlow"
-             :flowData="computeCashFlow" />
+             :flowData="computeCashFlow"
+             :getNextDates="getNextDates" />
   </div>
 </template>
 
@@ -51,7 +51,12 @@
     mapEstToDate,
     mapEstToClient,
     cashFlow } from '~/helpers/mapper.js'
-  import { analize, analizeEstimate, initWeekCalendar, minMaxDate } from '~/helpers/calendar.js'
+  import {
+    analize,
+    analizeEstimate,
+    initWeekCalendar,
+    minMaxDate,
+    nextWeek } from '~/helpers/calendar.js'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
     directives: {
@@ -155,7 +160,11 @@
         this.initiated = true
       },
       handleGenCalendar () {
-        console.log('handle:', initWeekCalendar())
+        const { wCalendar } = this
+        const next = nextWeek(this.wCalendar)
+        wCalendar['lastWeekDay'] = next[0]['lastWeekDay']
+        this.gCalendar['weeks'] = this.gCalendar['weeks'].concat(next)
+        //  = [...data, ...next]
       },
       hadleScroll (e) {
         console.log(e)
@@ -173,6 +182,12 @@
       },
       handleWeekOption (val) {
         this.selectedOption = val
+      },
+      getNextDates () {
+        const { wCalendar } = this
+        const next = nextWeek(this.wCalendar)
+        wCalendar['lastWeekDay'] = next[0]['lastWeekDay']
+        this.gCalendar['weeks'] = this.gCalendar['weeks'].concat(next)
       }
     },
     computed: {

@@ -22,7 +22,7 @@
       </table>
     </div>
     <div class="right-block" :style="{width}">
-      <r-mask @userScroll="evt => $emit('userScroll', evt)" ref="mask">
+      <r-mask @scroll="evt => $emit('userScroll', evt)" @ps-x-reach-end="evt => $emit('xReachEnd', evt)" ref="mask" :setScrollLeft="setScrollLeft">
         <table>
           <tbody>
             <tr v-for="est in estTotalContent" :key="`${uuidv4()}/-${est.id}`">
@@ -59,7 +59,7 @@
 <script>
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RText from '@/RText/index.vue'
-  import RMask from '@/RScroll/index.vue'
+  import RMask from '@/RScrollPerfect/index.vue'
   import uuid from 'uuid/v4'
   export default {
     props: {
@@ -69,7 +69,8 @@
       isUnAllocated: {
         type: Boolean,
         default: false
-      }
+      },
+      setScrollLeft: [Number, String]
     },
     data () {
       const uuidv4 = uuid

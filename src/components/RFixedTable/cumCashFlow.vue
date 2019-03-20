@@ -6,26 +6,24 @@
       </div>
     </div>
     <div ref="flow" class="right-block" :style="{width}">
-      <r-mask>
-        <table>
-          <tbody>
-            <tr>
-              <td v-for="(vdata, index) in flowData" :key="`${uuidv4()}-${index}`"
-                  :class="{
-                    'green': Number(vdata.cumulative) >= 0,
-                    'red': Number(vdata.cumulative) < 0
-                  }"
-              >
-                <r-text :value="vdata.cumulative" separate :styles="{'background-color': '#f1f3f5'}">
-                  <template v-slot:currency-icon>
-                    <!-- {{'$'}} -->
-                  </template>
-                </r-text>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </r-mask>
+      <table>
+        <tbody>
+          <tr>
+            <td v-for="(vdata, index) in flowData" :key="`${uuidv4()}-${index}`"
+                :class="{
+                  'green': Number(vdata.cumulative) >= 0,
+                  'red': Number(vdata.cumulative) < 0
+                }"
+            >
+              <r-text :value="vdata.cumulative" separate :styles="{'background-color': '#f1f3f5'}">
+                <template v-slot:currency-icon>
+                  <!-- {{'$'}} -->
+                </template>
+              </r-text>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -33,7 +31,6 @@
 <script>
   import uuid from 'uuid/v4'
   import RText from '@/RText/index.vue'
-  import RMask from '@/RScroll/index.vue'
   export default {
     props: {
       width: String,
@@ -46,8 +43,7 @@
       }
     },
     components: {
-      RText,
-      RMask
+      RText
     }
   }
 </script>

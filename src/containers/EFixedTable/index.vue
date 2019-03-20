@@ -2,7 +2,7 @@
   <div>
     <r-header ref="headerTable" :calendar="calendar" :isScrollTop="isScrollTop" />
     <r-income ref="incomeTable" :income="incomeClient" :isScrollTop="isScrollTop" />
-    <r-estimate @userScroll="handleUserScroll" ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
+    <r-estimate :setScrollLeft="prevScroll" @userScroll="handleUserScroll" @xReachEnd="addNewDates" ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
     <r-flow ref="flowTable" :flowData="flowData" />
     <r-cumflow ref="cumflowTable" :flowData="flowData" />
   </div>
@@ -27,16 +27,23 @@
       incomeClient: Array,
       estimates: Array,
       estTotalContent: Object,
-      flowData: Array
+      flowData: Array,
+      getNextDates: Function
     },
     data () {
+      const blockWidth = 127
+      const visibleWidth = 1143
       return {
         income: null,
         header: null,
         items: null,
         flow: null,
         cumflow: null,
-        isScrollTop: false
+        isScrollTop: false,
+        blockWidth,
+        visibleWidth,
+        prevScroll: 0,
+        wait: false
       }
     },
     mounted () {
@@ -45,11 +52,6 @@
       this.items = this.$refs.estimateTable.$refs.items
       this.flow = this.$refs.flowTable.$refs.flow
       this.cumflow = this.$refs.cumflowTable.$refs.flow
-      /* this.income.scrollLeft = 900
-      this.header.scrollLeft = 900
-      this.flow.scrollLeft = 900
-      this.cumflow.scrollLeft = 900
-      */
     },
     beforeDestroy () {
       this.income = null
@@ -59,7 +61,10 @@
       this.cumflow = null
     },
     methods: {
-      handleUserScroll (evt) {
+      async handleNextDates () {
+        await this.getNextDates()
+      },
+      async handleUserScroll (evt) {
         evt.preventDefault()
         const scrollLeft = evt.target.scrollLeft
         const scrollTop = evt.target.scrollTop
@@ -70,6 +75,24 @@
         this.flow.scrollLeft = scrollLeft
         this.cumflow.scrollLeft = scrollLeft
         this.items.scrollTop = scrollTop
+      },
+      async addNewDates (evt) {
+        if (!this.$store.state.calendar.isLoading) {
+          this.$store.commit('setLoading', true)
+          this.$nextTick(this.handleNextDates)
+        }
+        setTimeout(() => {
+          this.$store.commit('setLoading', false)
+        }, 2000)
+      }
+    },
+    computed: {
+      contentWidth () {
+        const { calendar } = this
+        return calendar.length * this.blockWidth
+      },
+      contentVisibleWidth () {
+        return 8.6 * this.blockWidth
       }
     }
   }
