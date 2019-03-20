@@ -14,7 +14,6 @@
   import REstimate from '@/RFixedTable/estimate.vue'
   import RFlow from '@/RFixedTable/cashflow.vue'
   import RCumflow from '@/RFixedTable/cumCashFlow.vue'
-  import debounce from 'debounce-promise'
   export default {
     components: {
       RHeader,
