@@ -151,7 +151,7 @@
       },
       dropToTarget (event) {
         console.log('drop: ', this.$store.state.dragTable)
-        this.$store.commit('resetState')
+        // this.$store.commit('resetState')
       },
       ...mapMutations(['saveComponent', 'deleteComponent'])
     },

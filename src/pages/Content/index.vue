@@ -26,37 +26,16 @@
     />
     <!-- <rfixed-table/> -->
     <hr>
-    <button @click.prevent="handleGenCalendar">click on me</button>
+    <button>click on me</button>
     <hr>
-    <e-table v-if="initiated"
-             :calendar="computeCalendar"
-             :incomeClient="computeIncome"
-             :estimates="estimates"
-             :estTotalContent="computeEstimate"
-             :flowData="computeCashFlow"
-             :getNextDates="getNextDates" />
+    <e-table v-if="!isLoading" :selectedOption="selectedOption" />
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RSelect from '@/RSelect'
-  import { clientData, calendar, costItems } from './fakeData.js'
-  import {
-    filterByWeek,
-    filterByMonth,
-    filterByYear } from '~/helpers/dateFilters.js'
-  import {
-    mapIncomeToDate,
-    mapEstToDate,
-    mapEstToClient,
-    cashFlow } from '~/helpers/mapper.js'
-  import {
-    analize,
-    analizeEstimate,
-    initWeekCalendar,
-    minMaxDate,
-    nextWeek } from '~/helpers/calendar.js'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
     directives: {
@@ -71,20 +50,12 @@
         }
       }
     },
-    props: {},
     components: {
       EdragInput,
       RSelect,
       ETable
     },
     data () {
-      let initiated = false
-      let gCalendar = {
-        weeks: null,
-        months: null,
-        years: null
-      }
-      let incomeFromClient = null
       return {
         dates: [29, 30, 31, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         items: [
@@ -123,48 +94,15 @@
         }, {
           label: 'Years',
           value: 'years'
-        }],
-        est: [],
-        initiated,
-        gCalendar,
-        incomeFromClient,
-        wCalendar: {
-          data: [],
-          firstWeekDay: null,
-          lastWeekDay: null
-        }
+        }]
       }
     },
     async created () {
       await this.init()
     },
-    mounted () {
-      /*
-      const headerTable = this.$refs.headerTable.$refs.header
-      const contentTable = this.$refs.contentTable.$refs.content
-      contentTable.addEventListener('scroll', function () {
-        headerTable.scrollLeft = this.scrollLeft
-        headerTable.scrollTop = this.scrollTop
-      }, { passive: true })
-      */
-    },
     methods: {
       async init () {
-        this.initiated = false
-        this.incomeFromClient = await clientData()
-        this.est = await costItems()
-        const { minDate: minDateClient, maxDate: maxDateClient } = analize(this.incomeFromClient)
-        const { minDate: minDateEst, maxDate: maxDateEst } = analizeEstimate(this.est)
-        const { min, max } = minMaxDate([minDateClient, minDateEst, maxDateClient, maxDateEst])
-        this.gCalendar['weeks'] = initWeekCalendar(this.wCalendar, min, max)
-        this.initiated = true
-      },
-      handleGenCalendar () {
-        const { wCalendar } = this
-        const next = nextWeek(this.wCalendar)
-        wCalendar['lastWeekDay'] = next[0]['lastWeekDay']
-        this.gCalendar['weeks'] = this.gCalendar['weeks'].concat(next)
-        //  = [...data, ...next]
+        await this.$store.dispatch('cashFlow/clientEstimate', { id: this.selectedOption })
       },
       hadleScroll (e) {
         console.log(e)
@@ -182,59 +120,12 @@
       },
       handleWeekOption (val) {
         this.selectedOption = val
-      },
-      getNextDates () {
-        const { wCalendar } = this
-        const next = nextWeek(this.wCalendar)
-        wCalendar['lastWeekDay'] = next[0]['lastWeekDay']
-        this.gCalendar['weeks'] = this.gCalendar['weeks'].concat(next)
       }
     },
     computed: {
-      computeCalendar () {
-        const { selectedOption } = this
-        return this.gCalendar[selectedOption]
-      },
-      computeIncome () {
-        const { selectedOption, incomeFromClient, gCalendar } = this
-        const data = mapIncomeToDate(gCalendar[selectedOption], incomeFromClient, selectedOption)
-        return data
-      },
-      computeCashFlow () {
-        const { computeIncome, computeEstimate } = this
-        const data = mapEstToClient(computeIncome, computeEstimate)
-        return data
-      },
-      fundsAndDates () {
-        const { selectedOption } = this
-        let data = []
-        switch (selectedOption) {
-          case 'weeks':
-            data = filterByWeek(calendar())
-            break
-          case 'months':
-            data = filterByMonth(calendar())
-            break
-          case 'years':
-            data = filterByYear(calendar())
-            break
-          default:
-            break
-        }
-        return data
-      },
-      estimates () {
-        return costItems()
-      },
-      computeEstimate () {
-        const { selectedOption, est, gCalendar } = this
-        const data = mapEstToDate(gCalendar[selectedOption], est, selectedOption)
-        return data
-      },
-      flowData () {
-        const data = cashFlow(this.est, this.fundsAndDates)
-        return data
-      }
+      ...mapState({
+        isLoading: state => state.cashFlow.isLoading
+      })
     }
   }
 </script>

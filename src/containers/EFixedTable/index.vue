@@ -1,10 +1,15 @@
 <template>
   <div>
-    <r-header ref="headerTable" :calendar="calendar" :isScrollTop="isScrollTop" />
-    <r-income ref="incomeTable" :income="incomeClient" :isScrollTop="isScrollTop" />
-    <r-estimate :setScrollLeft="prevScroll" @userScroll="handleUserScroll" @xReachEnd="addNewDates" ref="estimateTable" :estimates="estimates" :estTotalContent="estTotalContent" />
-    <r-flow ref="flowTable" :flowData="flowData" />
-    <r-cumflow ref="cumflowTable" :flowData="flowData" />
+    <r-header ref="headerTable" :calendar="$store.getters['cashFlow/calendarByType'](selectedOption)" />
+    <r-income ref="incomeTable" :income="$store.getters['cashFlow/incomeByType'](selectedOption)" />
+    <r-estimate
+      @userScroll="handleUserScroll"
+      @xReachEnd="addNewDates"
+      ref="estimateTable"
+      :estimates="estimates"
+      :estTotalContent="$store.getters['cashFlow/computeEstimate'](selectedOption)" />
+    <r-flow ref="flowTable" :flowData="$store.getters['cashFlow/computeCashFlow'](selectedOption)" />
+    <r-cumflow ref="cumflowTable" :flowData="$store.getters['cashFlow/computeCashFlow'](selectedOption)" />
   </div>
 </template>
 
@@ -14,6 +19,7 @@
   import REstimate from '@/RFixedTable/estimate.vue'
   import RFlow from '@/RFixedTable/cashflow.vue'
   import RCumflow from '@/RFixedTable/cumCashFlow.vue'
+  import { mapState } from 'vuex'
   export default {
     components: {
       RHeader,
@@ -23,16 +29,10 @@
       RCumflow
     },
     props: {
-      calendar: Array,
-      incomeClient: Array,
-      estimates: Array,
-      estTotalContent: Object,
-      flowData: Array,
-      getNextDates: Function
+      getNextDates: Function,
+      selectedOption: String
     },
     data () {
-      const blockWidth = 127
-      const visibleWidth = 1143
       return {
         income: null,
         header: null,
@@ -40,11 +40,14 @@
         flow: null,
         cumflow: null,
         isScrollTop: false,
-        blockWidth,
-        visibleWidth,
-        prevScroll: 0,
         wait: false
       }
+    },
+    computed: {
+      ...mapState({
+        calendar: state => state.cashFlow.calendar,
+        estimates: state => state.cashFlow.estimates
+      })
     },
     mounted () {
       this.income = this.$refs.incomeTable.$refs.income
@@ -61,15 +64,12 @@
       this.cumflow = null
     },
     methods: {
-      async handleNextDates () {
-        await this.getNextDates()
-      },
       async handleUserScroll (evt) {
         evt.preventDefault()
         const scrollLeft = evt.target.scrollLeft
         const scrollTop = evt.target.scrollTop
-        if (scrollTop) this.isScrollTop = true
-        else this.isScrollTop = false
+        // if (scrollTop) this.isScrollTop = false
+        // else this.isScrollTop = true
         this.income.scrollLeft = scrollLeft
         this.header.scrollLeft = scrollLeft
         this.flow.scrollLeft = scrollLeft
@@ -77,22 +77,8 @@
         this.items.scrollTop = scrollTop
       },
       async addNewDates (evt) {
-        if (!this.$store.state.calendar.isLoading) {
-          this.$store.commit('setLoading', true)
-          this.$nextTick(this.handleNextDates)
-        }
-        setTimeout(() => {
-          this.$store.commit('setLoading', false)
-        }, 2000)
-      }
-    },
-    computed: {
-      contentWidth () {
-        const { calendar } = this
-        return calendar.length * this.blockWidth
-      },
-      contentVisibleWidth () {
-        return 8.6 * this.blockWidth
+        const { selectedOption } = this
+        this.$store.dispatch('cashFlow/addNextDates', selectedOption)
       }
     }
   }
