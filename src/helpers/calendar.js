@@ -60,7 +60,12 @@ export const prevWeek = ({ firstWeekDay: firstDay }) => {
   })
 }
 
-export const initWeekCalendar = (wCalendar, start = null, finish = null) => {
+export const initWeekCalendar = (start = null, finish = null) => {
+  let wCalendar = {
+    data: [],
+    firstWeekDay: null,
+    lastWeekDay: null
+  }
   if (start && finish) {
     const current = currentWeek(start)
     wCalendar.data.push(current)
@@ -80,19 +85,25 @@ export const initWeekCalendar = (wCalendar, start = null, finish = null) => {
         wCalendar.data.push(next)
       }
     }
-    return flatten(wCalendar['data'])
+    const data = flatten(wCalendar['data'])
+    return {
+      wCalendar,
+      data
+    }
   } else {
     const current = currentWeek()
     const prev = prevWeek(current[0])
     const next = nextWeek(current[0])
     wCalendar.data.push(current)
-    wCalendar['firstWeekDay'] = current[0]['firstWeekDay']
-    wCalendar['lastWeekDay'] = current[0]['lastWeekDay']
     wCalendar['firstWeekDay'] = prev[0]['firstWeekDay']
     wCalendar['lastWeekDay'] = next[0]['lastWeekDay']
     wCalendar.data.unshift(prev)
     wCalendar.data.push(next)
-    return flatten(wCalendar['data'])
+    const data = flatten(wCalendar['data'])
+    return {
+      wCalendar,
+      data
+    }
   }
 }
 
