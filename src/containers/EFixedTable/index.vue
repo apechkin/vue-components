@@ -68,8 +68,8 @@
         evt.preventDefault()
         const scrollLeft = evt.target.scrollLeft
         const scrollTop = evt.target.scrollTop
-        // if (scrollTop) this.isScrollTop = false
-        // else this.isScrollTop = true
+        if (scrollTop) this.isScrollTop = false
+        else this.isScrollTop = true
         this.income.scrollLeft = scrollLeft
         this.header.scrollLeft = scrollLeft
         this.flow.scrollLeft = scrollLeft

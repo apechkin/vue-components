@@ -25,7 +25,9 @@ const state = {
     weeks: null,
     months: null,
     years: null
-  }
+  },
+  dragFrom: null,
+  dragTo: null
 }
 
 const mutations = {
@@ -54,6 +56,38 @@ const mutations = {
   },
   ADD_NEXT_WEEKS (state, payload) {
     state.gCalendar['weeks'] = state.gCalendar['weeks'].concat(payload)
+  },
+  SAVE_DRAG_START (state, payload) {
+    state.dragFrom = payload
+  },
+  SAVE_DRAG_ENTER (state, payload) {
+    state.dragTo = payload
+  },
+  COPY_FUNDS (state, payload) {
+    const { id, date, value } = payload
+    const prevState = { ...state }
+    const estimate = prevState.estimates.filter(estimate => {
+      return estimate.id === id
+    }).reduce((acc, cur) => {
+      return cur
+    })
+    estimate['values'].push({
+      date,
+      value
+    })
+  },
+  DELETE_FROMPARENT_FUNDS (state, payload) {
+    const { id, fullDate } = payload
+    state.estimates = state.estimates.map(estimate => {
+      if (estimate.id === id) {
+        estimate.values = estimate.values.filter(est => {
+          return est.date !== fullDate
+        })
+        return estimate
+      } else {
+        return estimate
+      }
+    })
   }
 }
 
@@ -114,6 +148,30 @@ const actions = {
     } catch (error) {
       commit('FAILURE', error)
     }
+  },
+  dragStart ({ commit }, payload) {
+    const { data, id } = payload
+    const dragFrom = {
+      id,
+      fullDate: data.fullDate,
+      total: data.total
+    }
+    commit('SAVE_DRAG_START', dragFrom)
+  },
+  dragEnter ({ commit }, payload) {
+    const { data, id } = payload
+    const dragFrom = {
+      id,
+      fullDate: data.fullDate,
+      total: data.total
+    }
+    commit('SAVE_DRAG_ENTER', dragFrom)
+  },
+  drop ({ commit, state }) {
+    const { dragFrom, dragTo } = state
+    const newVal = { id: dragTo.id, date: dragTo.fullDate, value: dragFrom.total }
+    commit('COPY_FUNDS', newVal)
+    commit('DELETE_FROMPARENT_FUNDS', dragFrom)
   }
 }
 

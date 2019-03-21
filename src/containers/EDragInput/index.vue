@@ -104,8 +104,7 @@
         this.componentValue = val
       },
       dragStart (event) {
-        this.$store.commit('setFromEst', this.dataTransfer)
-        console.log('drag start with content:', this.dataTransfer)
+        this.$store.dispatch('cashFlow/dragStart', this.dataTransfer)
       },
       dragTarget (event) {
         event.target.style.zIndex = 8
@@ -114,14 +113,8 @@
         event.target.style.zIndex = 10
       },
       dragEnter (event) {
-        // event.preventDefault() // обязательно
-        // console.log('dragEnter on:', event)
-        // console.log('dragEnter:', JSON.stringify(event.target))
-        // console.log('dragEnter type:', typeof JSON.stringify(event.target))
-        // console.log(event)
         event.preventDefault()
-        console.log('drag enter: ', this.dataTransfer)
-        this.$store.commit('setToEst', this.dataTransfer)
+        this.$store.dispatch('cashFlow/dragEnter', this.dataTransfer)
         /*
         if (typeof event.target === 'object' && event.target.className === 'drag-component') {
           this.i++
@@ -130,14 +123,10 @@
         */
       },
       dragOver (event) {
-        // console.log('dragOver')
-        // console.log(event)
         event.preventDefault()
         event.dataTransfer.dropEffect = 'move'
       },
       dragLeave (event) {
-        // console.log('dragLeave id:', id)
-        // console.log('dragLeave:', event)
         event.preventDefault()
         /*
         if (typeof event.fromElement === 'object' && event.fromElement.nodeName === 'TD') {
@@ -150,7 +139,8 @@
         // console.log('dragExit')
       },
       dropToTarget (event) {
-        console.log('drop: ', this.$store.state.dragTable)
+        this.$store.dispatch('cashFlow/drop')
+        // console.log('drop: ', this.$store.state.dragTable)
         // this.$store.commit('resetState')
       },
       ...mapMutations(['saveComponent', 'deleteComponent'])
