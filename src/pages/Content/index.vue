@@ -98,6 +98,8 @@
       }
     },
     async created () {
+      console.log('dialog:', this.$dialog)
+      console.log('modal:', this.$modal)
       await this.init()
     },
     methods: {
