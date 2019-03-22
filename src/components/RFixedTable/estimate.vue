@@ -10,7 +10,11 @@
                   {{estimate.name}}
                 </div>
                 <div class="estimate-total">
-                  <r-text :value="$store.getters['cashFlow/computeTotal'](estimate.id)" separate sign="-" :styles="{'background-color': 'transparent'}" />
+                  <r-text
+                    :value="$store.getters['cashFlow/computeTotal'](estimate.id)"
+                    separate
+                    :sign="$store.getters['cashFlow/computeTotal'](estimate.id) > 0 ? '-' : ''"
+                    :styles="{'background-color': 'transparent'}" />
                 </div>
                 <div v-show="isUnAllocated" class="estimate-unallocated">
                   <r-text value="80000" separate :styles="{'background-color': '#f1f3f5'}" />
@@ -32,7 +36,7 @@
                   :value="data.total"
                   @accepted="data => $emit('accepted', {data, id:est.id})"
                   currency="RUR"
-                  sign="-"
+                  :sign="data.total > 0 ? '-' : ''"
                   :key="`${uuidv4()}drag-${est.id}-${data.fullDate}`"/>
               </td>
             </tr>
