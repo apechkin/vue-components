@@ -1,7 +1,13 @@
 <template>
   <div>
-    <r-header ref="headerTable" :calendar="$store.getters['cashFlow/calendarByType'](selectedOption)" />
-    <r-income ref="incomeTable" :income="$store.getters['cashFlow/incomeByType'](selectedOption)" />
+    <div class="scrolled">
+      <r-header
+        ref="headerTable"
+        :calendar="$store.getters['cashFlow/calendarByType'](selectedOption)" />
+      <r-income
+        ref="incomeTable"
+        :income="$store.getters['cashFlow/incomeByType'](selectedOption)" />
+    </div>
     <r-estimate
       @userScroll="handleUserScroll"
       @xReachEnd="addNewDates"
@@ -68,8 +74,15 @@
         evt.preventDefault()
         const scrollLeft = evt.target.scrollLeft
         const scrollTop = evt.target.scrollTop
-        if (scrollTop) this.isScrollTop = false
-        else this.isScrollTop = true
+        if (scrollTop > 0) {
+          this.$nextTick(function () {
+            this.isScrollTop = true
+          })
+        } else {
+          this.$nextTick(function () {
+            this.isScrollTop = false
+          })
+        }
         this.income.scrollLeft = scrollLeft
         this.header.scrollLeft = scrollLeft
         this.flow.scrollLeft = scrollLeft

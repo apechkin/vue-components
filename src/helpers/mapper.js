@@ -82,33 +82,28 @@ export const mapIncomeToDate = (calendar, income, filter) => {
 export const mapEstToDate = (calendar, estimate, filter) => {
   checkParam(calendar)
   checkParam(estimate)
-  let estimateSnap = [...estimate]
-  const estimates = estimateSnap.length
-  let mapper = {}
+  let mapper = []
   let calendarData = []
   switch (filter) {
     case 'weeks':
-      if (estimates) {
-        estimateSnap.forEach(est => {
-          mapper[est.id] = {
-            id: est.id,
-            name: est.name,
-            calendar: []
-          }
-          const { values } = est
-          calendarData = calendar.map(elem => {
-            const total = values.filter(val => {
-              return String(val.date) === String(elem.fullDate)
-            }).reduce((acc, cur) => {
-              return Number(acc) + Number(cur.value)
-            }, 0)
-            return { fullDate: elem.fullDate, total }
-          })
-          mapper[est.id]['calendar'] = calendarData
+      for (let index = 0; index < estimate.length; index++) {
+        const est = estimate[index]
+        const { values } = est
+        calendarData = calendar.map(elem => {
+          const total = values.filter(val => {
+            return String(val.date) === String(elem.fullDate)
+          }).reduce((acc, cur) => {
+            return Number(acc) + Number(cur.value)
+          }, 0)
+          return { fullDate: elem.fullDate, total }
         })
-        return mapper
+        mapper.push({
+          id: est.id,
+          name: est.name,
+          calendar: calendarData || []
+        })
       }
-      break
+      return mapper
     default:
       break
   }

@@ -10,7 +10,7 @@
                   {{estimate.name}}
                 </div>
                 <div class="estimate-total">
-                  <r-text value="1200000" separate sign="-" :styles="{'background-color': 'transparent'}" />
+                  <r-text :value="$store.getters['cashFlow/computeTotal'](estimate.id)" separate sign="-" :styles="{'background-color': 'transparent'}" />
                 </div>
                 <div v-show="isUnAllocated" class="estimate-unallocated">
                   <r-text value="80000" separate :styles="{'background-color': '#f1f3f5'}" />
@@ -52,7 +52,7 @@
     props: {
       width: String,
       estimates: Array,
-      estTotalContent: Object,
+      estTotalContent: Array,
       isUnAllocated: {
         type: Boolean,
         default: false

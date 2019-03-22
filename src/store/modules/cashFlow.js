@@ -183,10 +183,21 @@ const getters = {
     return mapIncomeToDate(state.gCalendar[id], state.formClient, id)
   },
   computeEstimate: state => id => {
-    return mapEstToDate(state.gCalendar[id], state.estimates, id)
+    const total = mapEstToDate(state.gCalendar[id], state.estimates, id)
+    return total
   },
   computeCashFlow: (state, getters) => id => {
     return mapEstToClient(getters.incomeByType(id), getters.computeEstimate(id))
+  },
+  computeTotal: state => id => {
+    const estimate = state.estimates.filter(estimate => {
+      return estimate.id === id
+    }).reduce((acc, cur) => {
+      return cur
+    })
+    return estimate['values'].reduce((acc, cur) => {
+      return Number(acc) + Number(cur.value)
+    }, 0)
   }
 }
 
