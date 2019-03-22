@@ -1,6 +1,6 @@
 <template>
   <div class="content-block">
-    <div class="left-block" :class="{ 'scrolled': isScrollTop }">
+    <div class="left-block">
       <table>
         <tbody>
           <tr>
@@ -21,7 +21,7 @@
         </tbody>
       </table>
     </div>
-    <div ref="header" class="right-block" :class="{ 'scrolled': isScrollTop }" :style="{width}">
+    <div ref="header" class="right-block" :style="{width}">
       <table class="header-table">
         <tbody>
           <tr>
@@ -46,7 +46,6 @@
     props: {
       width: String,
       calendar: Array,
-      isScrollTop: Boolean,
       isUnAllocated: {
         type: Boolean,
         default: false
