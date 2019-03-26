@@ -1,11 +1,15 @@
 <template>
   <div class="content">
+    <modal-window/>
     <slot/>
   </div>
 </template>
 <script>
+  import modalWindow from '@/RModal'
   export default {
-
+    components: {
+      modalWindow
+    }
   }
 </script>
 

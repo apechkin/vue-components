@@ -32,20 +32,20 @@
       ]
       return {
         ps: null,
+        container: null,
         customEvents
       }
     },
     beforeDestroy () {
-      const $ = document.querySelector.bind(document)
-      const container = $('.container-sb')
       const { customEvents } = this
       customEvents.forEach(event => {
-        container.removeEventListener(event, this.scrollHandle)
+        this.container.removeEventListener(event, this.scrollHandle)
       })
-      container.removeEventListener('scroll', this.scrollHandle)
+      this.container.removeEventListener('scroll', this.scrollHandle)
       if (this.ps) {
         this.ps.destroy()
         this.ps = null
+        this.container = null
       }
     },
     methods: {
@@ -55,17 +55,17 @@
     },
     mounted () {
       const $ = document.querySelector.bind(document)
-      const container = $('.container-sb')
-      this.ps = new PerfectScrollbar(container, {
+      this.container = $('.container-sb')
+      this.ps = new PerfectScrollbar(this.container, {
         minScrollbarLength: 150,
         wheelPropagation: false,
         wheelSpeed: 0.5
       })
       const { customEvents } = this
       customEvents.forEach(event => {
-        container.addEventListener(event, this.scrollHandle)
+        this.container.addEventListener(event, this.scrollHandle)
       })
-      container.addEventListener('scroll', this.scrollHandle)
+      this.container.addEventListener('scroll', this.scrollHandle)
     }
   }
 </script>

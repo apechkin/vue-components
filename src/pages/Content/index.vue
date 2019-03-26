@@ -26,7 +26,7 @@
     />
     <!-- <rfixed-table/> -->
     <hr>
-    <button>click on me</button>
+    <button @click="createDialog">click on me</button>
     <hr>
     <e-table v-if="!isLoading" :selectedOption="selectedOption" />
   </div>
@@ -37,19 +37,8 @@
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RSelect from '@/RSelect'
   import ETable from '~/containers/EFixedTable/index.vue'
+  import testModal from './testModal.vue'
   export default {
-    directives: {
-      scroll: {
-        inserted: function (el, binding) {
-          let f = function (evt) {
-            if (binding.value(evt, el)) {
-              window.removeEventListener('scroll', f)
-            }
-          }
-          window.addEventListener('scroll', f)
-        }
-      }
-    },
     components: {
       EdragInput,
       RSelect,
@@ -98,11 +87,13 @@
       }
     },
     async created () {
-      console.log('dialog:', this.$dialog)
-      console.log('modal:', this.$modal)
       await this.init()
     },
     methods: {
+      async createDialog () {
+        console.log('create dialog')
+        this.$store.dispatch('modal/openModal', { component: testModal, props: { abra: '123' } })
+      },
       async init () {
         await this.$store.dispatch('cashFlow/clientEstimate', { id: this.selectedOption })
       },
