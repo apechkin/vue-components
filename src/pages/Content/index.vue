@@ -37,7 +37,7 @@
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RSelect from '@/RSelect'
   import ETable from '~/containers/EFixedTable/index.vue'
-  import testModal from './testModal.vue'
+  import MoveFunds from '@/RDialogs/MoveFunds'
   export default {
     components: {
       EdragInput,
@@ -91,8 +91,13 @@
     },
     methods: {
       async createDialog () {
-        console.log('create dialog')
-        this.$store.dispatch('modal/openModal', { component: testModal, props: { abra: '123' } })
+        this.$store.dispatch('modal/openModal', {
+          component: MoveFunds,
+          props: {
+            title: 'Перенос денежных средств',
+            abra: '123'
+          }
+        })
       },
       async init () {
         await this.$store.dispatch('cashFlow/clientEstimate', { id: this.selectedOption })
