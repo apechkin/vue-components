@@ -1,28 +1,10 @@
 <template>
-  <div id="modal-template" v-if="modal.isOpen">
+  <div v-if="modal.isOpen">
     <transition name="modal">
       <div class="modal-mask">
         <div class="modal-wrapper">
           <div class="modal-container">
-
-            <div class="modal-header">
-              <slot name="header">
-                default header
-              </slot>
-            </div>
-
-            <div class="modal-body">
-              <component :is="modal.component" v-bind="modal.props" />
-            </div>
-
-            <div class="modal-footer">
-              <slot name="footer">
-                default footer
-                <button class="modal-default-button" @click="$emit('close')">
-                  OK
-                </button>
-              </slot>
-            </div>
+            <component :is="modal.component" v-bind="modal.props" />
           </div>
         </div>
       </div>
@@ -51,7 +33,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .3);
   display: table;
   transition: opacity .3s ease;
 }
@@ -62,37 +44,16 @@
 }
 
 .modal-container {
-  width: 300px;
+  width: 600px;
   margin: 0px auto;
-  padding: 20px 30px;
   background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  border-radius: 4px;
+  border: none;
+  border-width: 0px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, .35);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
 
 .modal-enter {
   opacity: 0;
