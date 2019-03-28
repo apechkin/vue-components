@@ -84,6 +84,7 @@
     watch: {
       proxy: function (val) {
         if (this.roundRate) this.$emit('change', parseFloat(val).toFixed(this.roundRate))
+        else this.$emit('change', val)
       }
     }
   }

@@ -4,7 +4,7 @@
       <div class="element-title">POSM (сувениры + промоформа)</div>
       <div class="element-date">30.01.19</div>
       <div class="element-value">
-        <r-input :value="inVal" :boxStyles="styleObject" @change="handleChange" />
+        <r-input :value="inVal" :boxStyles="styleObject" roundRate="2" @change="handleChange" />
       </div>
     </div>
     <div class="funds-move">
@@ -14,7 +14,7 @@
       <div class="element-title">Веб-сайты и приложения: разработка…</div>
       <div class="element-date">02.02.19</div>
       <div class="element-value">
-        <r-info :content="inVal"
+        <r-info :content="computeContent"
                 :boxStyles="styleObject"
                 :contentStyles="contentStyles" />
       </div>
@@ -55,6 +55,11 @@
     methods: {
       handleChange (val) {
         this.inVal = val
+      }
+    },
+    computed: {
+      computeContent () {
+        return this.$helper.fixed({ value: 121212545.124, roundRate: 2 })
       }
     }
   }
