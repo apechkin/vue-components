@@ -102,9 +102,6 @@
       async init () {
         await this.$store.dispatch('cashFlow/clientEstimate', { id: this.selectedOption })
       },
-      hadleScroll (e) {
-        console.log(e)
-      },
       checkState (e) {
         e.preventDefault()
       },

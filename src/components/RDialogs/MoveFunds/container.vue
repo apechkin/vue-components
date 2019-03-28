@@ -4,7 +4,7 @@
       <div class="element-title">POSM (сувениры + промоформа)</div>
       <div class="element-date">30.01.19</div>
       <div class="element-value">
-        <r-input value="5000000"/>
+        <r-input :value="inVal" :boxStyles="styleObject" @change="handleChange" />
       </div>
     </div>
     <div class="funds-move">
@@ -14,17 +14,34 @@
       <div class="element-title">Веб-сайты и приложения: разработка…</div>
       <div class="element-date">02.02.19</div>
       <div class="element-value">
-        <r-input value="1200000"/>
+        <r-input :value="inVal" roundRate="2" :boxStyles="styleObject" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import RInput from '@/RInput/index.vue'
+  import RInput from '@/RLightInput/index.vue'
   export default {
     components: {
       RInput
+    },
+    data () {
+      return {
+        inVal: 1200000,
+        styleObject: {
+          'background-color': 'rgba(248, 249, 250, 1)',
+          minWidth: '256px',
+          width: '100%',
+          minHeight: '80px',
+          'justify-content': 'flex-end'
+        }
+      }
+    },
+    methods: {
+      handleChange (val) {
+        this.inVal = val
+      }
     }
   }
 </script>
@@ -46,11 +63,17 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: space-between;
     align-items: flex-start;
   }
-  .funds-move, .funds-element {
-    margin: 50px 20px;
+  .funds-move {
+    padding: 0 5px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .funds-element {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 0 15px;
   }
   .element-title {
     font-family: 'Roboto-Bold', 'Roboto Bold', 'Roboto';
@@ -68,5 +91,9 @@
     font-size: 12px;
     color: #343A40;
     text-align: left;
+    width: 100%;
+  }
+  .element-value {
+    width: 100%;
   }
 </style>
