@@ -9,10 +9,13 @@
       :name="name"
       v-model="proxy"
       :step="steps"
-      :style="inputStyles"
+      :style="contentStyles"
       @blur="focused=false"
     >
-    <span v-show="!focused" @click="handleClick" class="box-fake">
+    <span v-show="!focused"
+          @click="handleClick"
+          class="box-fake"
+          :style="contentStyles">
       {{fakeValue}}
     </span>
   </div>
@@ -38,7 +41,7 @@
         type: Object,
         default: () => ({})
       },
-      inputStyles: {
+      contentStyles: {
         type: Object,
         default: () => ({})
       }

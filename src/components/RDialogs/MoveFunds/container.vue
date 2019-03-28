@@ -14,7 +14,9 @@
       <div class="element-title">Веб-сайты и приложения: разработка…</div>
       <div class="element-date">02.02.19</div>
       <div class="element-value">
-        <r-input :value="inVal" roundRate="2" :boxStyles="styleObject" />
+        <r-info :content="inVal"
+                :boxStyles="styleObject"
+                :contentStyles="contentStyles" />
       </div>
     </div>
   </div>
@@ -22,9 +24,11 @@
 
 <script>
   import RInput from '@/RLightInput/index.vue'
+  import RInfo from '@/RInfo/index.vue'
   export default {
     components: {
-      RInput
+      RInput,
+      RInfo
     },
     data () {
       return {
@@ -35,6 +39,16 @@
           width: '100%',
           minHeight: '80px',
           'justify-content': 'flex-end'
+        },
+        contentStyles: {
+          'border': 'none',
+          'font-family': 'Roboto-Regular, Roboto',
+          'font-weight': '400',
+          'font-style': 'normal',
+          'font-size': '28px',
+          'color': '#495057',
+          'text-align': 'right',
+          'margin-right': '15px'
         }
       }
     },
