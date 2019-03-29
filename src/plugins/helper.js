@@ -1,3 +1,4 @@
+import moment from 'moment'
 export default {
   install (Vue, options) {
     Vue.prototype.$helper = {
@@ -8,6 +9,9 @@ export default {
         } else {
           return String(value).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
         }
+      },
+      dateFormat: function ({ date, format }) {
+        return moment(date).format(format)
       }
     }
   }
