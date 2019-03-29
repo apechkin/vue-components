@@ -94,8 +94,7 @@
         this.$store.dispatch('modal/openModal', {
           component: MoveFunds,
           props: {
-            title: 'Перенос денежных средств',
-            abra: '123'
+            title: 'Перенос денежных средств'
           }
         })
       },
