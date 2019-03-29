@@ -150,20 +150,22 @@ const actions = {
     }
   },
   dragStart ({ commit }, payload) {
-    const { data, id } = payload
+    const { data, id, name } = payload
     const dragFrom = {
       id,
       fullDate: data.fullDate,
-      total: data.total
+      total: data.total,
+      costitem: name
     }
     commit('SAVE_DRAG_START', dragFrom)
   },
   dragEnter ({ commit }, payload) {
-    const { data, id } = payload
+    const { data, id, name } = payload
     const dragFrom = {
       id,
       fullDate: data.fullDate,
-      total: data.total
+      total: data.total,
+      costitem: name
     }
     commit('SAVE_DRAG_ENTER', dragFrom)
   },
