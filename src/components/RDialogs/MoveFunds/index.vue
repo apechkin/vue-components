@@ -1,7 +1,7 @@
 <template>
   <base-box :title="title">
     <div class="sigma-icon" slot="icon" />
-    <c-container/>
+    <c-container :from="from" :to="to" :boxStyles="boxStyles" :contentStyles="contentStyles" />
   </base-box>
 </template>
 
@@ -9,7 +9,11 @@
   import CContainer from './container.vue'
   export default {
     props: {
-      title: String
+      title: String,
+      from: Object,
+      to: Object,
+      boxStyles: Object,
+      contentStyles: Object
     },
     components: {
       CContainer
