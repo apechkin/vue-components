@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="funds-move">
-        >
+        <r-triangle />
       </div>
       <div class="funds-element">
         <div class="element-title"><span>{{to['costitem']}}</span></div>
@@ -31,6 +31,7 @@
 <script>
   import RInput from '@/RLightInput/index.vue'
   import RInfo from '@/RInfo/index.vue'
+  import RTriangle from '@/RTriangle/index.vue'
   export default {
     props: {
       from: Object,
@@ -40,7 +41,8 @@
     },
     components: {
       RInput,
-      RInfo
+      RInfo,
+      RTriangle
     },
     methods: {
       handleChange (val) {
