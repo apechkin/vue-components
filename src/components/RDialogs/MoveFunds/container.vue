@@ -2,20 +2,20 @@
   <div class="funds-container">
     <div class="funds-content">
       <div class="funds-element">
-        <div class="element-title">POSM (сувениры + промоформа)</div>
-        <div class="element-date">30.01.19</div>
+        <div class="element-title"><span>{{from['costitem']}}</span></div>
+        <div class="element-date">{{$helper.dateFormat({date:from['fullDate'], format: 'DD.MM.YY'})}}</div>
         <div class="element-value">
-          <r-input :value="from" :boxStyles="boxStyles" roundRate="2" @change="handleChange" />
+          <r-input :value="$helper.fixed({ value: from['total']})" :boxStyles="boxStyles" roundRate="2" @change="handleChange" />
         </div>
       </div>
       <div class="funds-move">
         >
       </div>
       <div class="funds-element">
-        <div class="element-title">Веб-сайты и приложения: разработка…</div>
-        <div class="element-date">02.02.19</div>
+        <div class="element-title"><span>{{to['costitem']}}</span></div>
+        <div class="element-date">{{$helper.dateFormat({date: to['fullDate'], format: 'DD.MM.YY'})}}</div>
         <div class="element-value">
-          <r-info :content="to"
+          <r-info :content="$helper.fixed({ value: to['total'] })"
                   :boxStyles="boxStyles"
                   :contentStyles="contentStyles" />
         </div>
@@ -31,22 +31,16 @@
 <script>
   import RInput from '@/RLightInput/index.vue'
   import RInfo from '@/RInfo/index.vue'
-  import { mapState } from 'vuex'
   export default {
     props: {
-      from: [String, Number],
-      to: [String, Number],
+      from: Object,
+      to: Object,
       boxStyles: Object,
       contentStyles: Object
     },
     components: {
       RInput,
       RInfo
-    },
-    data () {
-      return {
-        inVal: 1200000
-      }
     },
     methods: {
       handleChange (val) {
@@ -58,15 +52,6 @@
       handleConfirm () {
 
       }
-    },
-    computed: {
-      computeContent () {
-        return this.$helper.fixed({ value: 121212545.124, roundRate: 2 })
-      },
-      ...mapState({
-        dragFrom: state => this.$helper.fixed({ value: state.cashFlow.dragFrom, roundRate: 2 }),
-        dragTo: state => this.$helper.fixed({ value: state.cashFlow.dragTo, roundRate: 2 })
-      })
     }
   }
 </script>
@@ -141,7 +126,18 @@
     font-size: 12px;
     color: $gray_8;
     text-align: left;
+    width: 250px;
+    height: 18px;
+  }
+  .element-title > * {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
   }
   .element-date {
     font-family: 'Roboto-Regular', 'Roboto';
