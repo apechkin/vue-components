@@ -102,7 +102,7 @@
         }
       },
       handleChangeValue (val) {
-        this.componentValue = val
+        this.componentValue = val || 0
       },
       dragStart (event) {
         this.$store.dispatch('cashFlow/dragStart', this.dataTransfer)
