@@ -5,7 +5,7 @@
         <div class="element-title"><span>{{from['costitem']}}</span></div>
         <div class="element-date">{{$helper.dateFormat({date:from['fullDate'], format: 'DD.MM.YY'})}}</div>
         <div class="element-value">
-          <r-input :value="$helper.fixed({ value: from['total']})" :boxStyles="boxStyles" roundRate="2" @change="handleChange" />
+          <r-input :value="from['total']" :boxStyles="boxStyles" roundRate="2" @change="handleChange" />
         </div>
       </div>
       <div class="funds-move">
@@ -44,15 +44,21 @@
       RInfo,
       RTriangle
     },
+    data () {
+      return {
+        fromData: this.from['total']
+      }
+    },
     methods: {
       handleChange (val) {
-        this.inVal = val
+        this.fromData = val
       },
       handleCancel () {
         this.$store.dispatch('modal/closeModal')
       },
       handleConfirm () {
-
+        const { fromData } = this
+        this.$store.dispatch('cashFlow/drop', { fromData })
       }
     }
   }

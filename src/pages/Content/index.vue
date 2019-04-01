@@ -26,7 +26,7 @@
     />
     <!-- <rfixed-table/> -->
     <hr>
-    <button @click="createDialog">click on me</button>
+    <button>click on me</button>
     <hr>
     <e-table v-if="!isLoading" :selectedOption="selectedOption" />
   </div>
@@ -37,7 +37,6 @@
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RSelect from '@/RSelect'
   import ETable from '~/containers/EFixedTable/index.vue'
-  import MoveFunds from '@/RDialogs/MoveFunds'
   export default {
     components: {
       EdragInput,
@@ -90,14 +89,6 @@
       await this.init()
     },
     methods: {
-      async createDialog () {
-        this.$store.dispatch('modal/openModal', {
-          component: MoveFunds,
-          props: {
-            title: 'Перенос денежных средств'
-          }
-        })
-      },
       async init () {
         await this.$store.dispatch('cashFlow/clientEstimate', { id: this.selectedOption })
       },
