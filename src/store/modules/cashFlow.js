@@ -63,7 +63,7 @@ const mutations = {
   SAVE_DRAG_ENTER (state, payload) {
     state.dragTo = payload
   },
-  COPY_FUNDS (state, payload) {
+  APPEND_FUNDS (state, payload) {
     const { id, date, value } = payload
     const prevState = { ...state }
     const estimate = prevState.estimates.filter(estimate => {
@@ -71,22 +71,24 @@ const mutations = {
     }).reduce((acc, cur) => {
       return cur
     })
+    // вместото кода снизу, при работе с API должен вызываться его метод
     estimate['values'].push({
       date,
       value
     })
   },
-  DELETE_FROMPARENT_FUNDS (state, payload) {
-    const { id, fullDate } = payload
-    state.estimates = state.estimates.map(estimate => {
-      if (estimate.id === id) {
-        estimate.values = estimate.values.filter(est => {
-          return est.date !== fullDate
-        })
-        return estimate
-      } else {
-        return estimate
-      }
+  SUB_FUNDS (state, payload) {
+    const { id, date, value } = payload
+    const prevState = { ...state }
+    const estimate = prevState.estimates.filter(estimate => {
+      return estimate.id === id
+    }).reduce((acc, cur) => {
+      return cur
+    })
+    // вместото кода снизу, при работе с API должен вызываться его метод
+    estimate['values'].push({
+      date,
+      value: value - (2 * value)
     })
   }
 }
@@ -150,28 +152,33 @@ const actions = {
     }
   },
   dragStart ({ commit }, payload) {
-    const { data, id } = payload
+    const { data, id, name } = payload
     const dragFrom = {
       id,
       fullDate: data.fullDate,
-      total: data.total
+      total: data.total,
+      costitem: name
     }
     commit('SAVE_DRAG_START', dragFrom)
   },
   dragEnter ({ commit }, payload) {
-    const { data, id } = payload
+    const { data, id, name } = payload
     const dragFrom = {
       id,
       fullDate: data.fullDate,
-      total: data.total
+      total: data.total,
+      costitem: name
     }
     commit('SAVE_DRAG_ENTER', dragFrom)
   },
-  drop ({ commit, state }) {
+  drop ({ commit, state }, payload) {
     const { dragFrom, dragTo } = state
-    const newVal = { id: dragTo.id, date: dragTo.fullDate, value: dragFrom.total }
-    commit('COPY_FUNDS', newVal)
-    commit('DELETE_FROMPARENT_FUNDS', dragFrom)
+    const { fromData } = payload
+    const append = { id: dragTo.id, date: dragTo.fullDate, value: fromData }
+    const subtract = { id: dragFrom.id, date: dragFrom.fullDate, value: fromData }
+    commit('APPEND_FUNDS', append)
+    commit('SUB_FUNDS', subtract)
+    this.dispatch('modal/closeModal')
   }
 }
 

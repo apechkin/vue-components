@@ -39,7 +39,8 @@
   import RdragBlock from '@/RDraggableArea/index.vue'
   import RInput from '@/RInput/index.vue'
   import ReditIcon from '@/REditIcon/index.vue'
-  import { mapMutations, mapGetters } from 'vuex'
+  import { mapMutations, mapGetters, mapState } from 'vuex'
+  import MoveFunds from '@/RDialogs/MoveFunds'
   export default {
     components: {
       RdragBlock,
@@ -101,7 +102,7 @@
         }
       },
       handleChangeValue (val) {
-        this.componentValue = val
+        this.componentValue = val || 0
       },
       dragStart (event) {
         this.$store.dispatch('cashFlow/dragStart', this.dataTransfer)
@@ -139,13 +140,39 @@
         // console.log('dragExit')
       },
       dropToTarget (event) {
-        this.$store.dispatch('cashFlow/drop')
-        // console.log('drop: ', this.$store.state.dragTable)
-        // this.$store.commit('resetState')
+        this.$store.dispatch('modal/openModal', {
+          component: MoveFunds,
+          props: {
+            title: 'Перенос денежных средств',
+            from: this.dragFrom,
+            to: this.dragTo,
+            contentStyles: {
+              'border': 'none',
+              'font-family': 'Roboto-Regular, Roboto',
+              'font-weight': '400',
+              'font-style': 'normal',
+              'font-size': '28px',
+              'color': '#495057',
+              'text-align': 'right',
+              'margin-right': '15px'
+            },
+            boxStyles: {
+              'background-color': 'rgba(248, 249, 250, 1)',
+              minWidth: '256px',
+              width: '100%',
+              minHeight: '80px',
+              'justify-content': 'flex-end'
+            }
+          }
+        })
       },
       ...mapMutations(['saveComponent', 'deleteComponent'])
     },
     computed: {
+      ...mapState({
+        dragFrom: state => state.cashFlow.dragFrom,
+        dragTo: state => state.cashFlow.dragTo
+      }),
       ...mapGetters(['getComponent']),
       computeCurrency () {
         let label = ``

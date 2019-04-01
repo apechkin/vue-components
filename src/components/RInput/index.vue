@@ -171,7 +171,4 @@
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-  input[type=number]{
-  -moz-appearance:textfield;
-}
 </style>

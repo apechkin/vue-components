@@ -38,18 +38,6 @@
   import RSelect from '@/RSelect'
   import ETable from '~/containers/EFixedTable/index.vue'
   export default {
-    directives: {
-      scroll: {
-        inserted: function (el, binding) {
-          let f = function (evt) {
-            if (binding.value(evt, el)) {
-              window.removeEventListener('scroll', f)
-            }
-          }
-          window.addEventListener('scroll', f)
-        }
-      }
-    },
     components: {
       EdragInput,
       RSelect,
@@ -103,9 +91,6 @@
     methods: {
       async init () {
         await this.$store.dispatch('cashFlow/clientEstimate', { id: this.selectedOption })
-      },
-      hadleScroll (e) {
-        console.log(e)
       },
       checkState (e) {
         e.preventDefault()
