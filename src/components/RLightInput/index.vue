@@ -58,8 +58,6 @@
         this.$nextTick(() => {
           this.$refs['input'].focus()
         })
-      } else {
-        this.proxy = this.value
       }
     },
     methods: {
@@ -76,15 +74,12 @@
         return parseFloat(this.value).toFixed(2)
       },
       fakeValue () {
-        const { proxy, type } = this
-        if (proxy && type === 'number') return `${this.sign ? this.sign : ''}` + String(proxy).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
-        else return proxy
+        return this.$helper.fixed({ value: this.proxy })
       }
     },
     watch: {
       proxy: function (val) {
-        if (this.roundRate) this.$emit('change', parseFloat(val).toFixed(this.roundRate))
-        else this.$emit('change', val)
+        this.$emit('change', val)
       }
     }
   }
