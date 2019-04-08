@@ -15,7 +15,9 @@
     </div>
     <hr>
     <div class="row">
-      123
+      <div class="file-reader">
+        <excel-parser/>
+      </div>
     </div>
     <hr>
     <r-select
@@ -37,11 +39,13 @@
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RSelect from '@/RSelect'
   import ETable from '~/containers/EFixedTable/index.vue'
+  import ExcelParser from '~/containers/EExcelParser/index.vue'
   export default {
     components: {
       EdragInput,
       RSelect,
-      ETable
+      ETable,
+      ExcelParser
     },
     data () {
       return {
@@ -127,4 +131,11 @@
     cursor: pointer;
     background-color: $orange_3;
   }
+.file-reader {
+  position: relative;
+  width: 610px;
+  height: 420px;
+  border: 1px solid black;
+  margin-left: 20px;
+}
 </style>
