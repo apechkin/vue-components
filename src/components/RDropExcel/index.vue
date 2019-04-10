@@ -45,11 +45,14 @@
       }
     },
     methods: {
-      vAdded () {
+      vAdded (file) {
         this.fileAdded = true
         const $ = document.querySelector.bind(document)
-        this.closeIcon = $('.drop-box-close')
-        this.closeIcon.addEventListener('click', this.closeClick)
+        if (this.useComponentTemplate) {
+          this.closeIcon = $('.drop-box-close')
+          this.closeIcon.addEventListener('click', this.closeClick)
+          this.$emit('vdropzone-file-added-ref', file)
+        }
       },
       template () {
         return `<div class="drop-box-preview">
