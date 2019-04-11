@@ -1,5 +1,6 @@
 <template>
   <vueDropzone
+    :style="styles"
     id="dropZone"
     ref="dropZone"
     class="drop-box"
@@ -13,7 +14,8 @@
   export default {
     props: {
       dropOptions: Object,
-      useComponentTemplate: Boolean
+      useComponentTemplate: Boolean,
+      styles: Object
     },
     components: {
       vueDropzone
@@ -40,7 +42,7 @@
     },
     beforeDestroy () {
       if (this.closeIcon) {
-        this.closeIcon.removeEventListener('click', this.closeClick)
+        this.closeIcon.removeEventListener('click', this.deleteFile)
         this.closeIcon = null
       }
     },
@@ -50,7 +52,7 @@
         const $ = document.querySelector.bind(document)
         if (this.useComponentTemplate) {
           this.closeIcon = $('.drop-box-close')
-          this.closeIcon.addEventListener('click', this.closeClick)
+          this.closeIcon.addEventListener('click', this.deleteFile)
           this.$emit('vdropzone-file-added-ref', file)
         }
       },
@@ -65,7 +67,7 @@
           </div>
         </div>`
       },
-      closeClick (e) {
+      deleteFile (e) {
         e.preventDefault()
         this.$refs.dropZone.removeAllFiles(true)
         this.fileAdded = false

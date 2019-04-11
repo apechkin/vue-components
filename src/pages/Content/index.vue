@@ -14,12 +14,6 @@
         currency="RUR"/>
     </div>
     <hr>
-    <div class="row">
-      <div class="file-reader">
-        <excel-parser/>
-      </div>
-    </div>
-    <hr>
     <r-select
       :options="listOptions"
       v-model="selectedOption"

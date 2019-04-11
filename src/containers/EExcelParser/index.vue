@@ -1,6 +1,17 @@
 <template>
   <div>
-    <drop-excel @vdropzone-file-added-ref="handleFile" :dropOptions="dropOptions" :useComponentTemplate="true" />
+    <drop-excel
+      @vdropzone-removed-file="handleDeleteFile"
+      @vdropzone-file-added-ref="handleFile"
+      :dropOptions="dropOptions"
+      :useComponentTemplate="true"
+      :styles="contentStyles" />
+    <r-area :componentStyle="areaStyle">
+      <r-button
+        :disabled="preparedData === null"
+        @click.native="handleConfirm"
+        :componentStyle="buttonStyle">Confirm</r-button>
+    </r-area>
   </div>
 </template>
 
@@ -9,6 +20,17 @@
   export default {
     data () {
       return {
+        areaStyle: {
+          'justify-content': 'flex-end',
+          'align-items': 'flex-end',
+          'min-height': '118px'
+        },
+        buttonStyle: {
+          'margin-bottom': '10px'
+        },
+        contentStyles: {
+          'min-height': '300px'
+        },
         dropOptions: {
           autoProcessQueue: false,
           forceChunking: true,
@@ -47,10 +69,15 @@
           'JRNAL_SRCE': 0,
           'ALLOCATION': 0,
           'ENTRY_DATE': 0
-        }
+        },
+        preparedData: null
       }
     },
     methods: {
+      handleConfirm () {
+        // send to api
+        // this.$api.sendData(url, this.preparedData)
+      },
       prepareData (json) {
         let data = []
         for (let index = 1; index < json.length; index++) {
@@ -64,7 +91,10 @@
           }
           data.push(head)
         }
-        return data
+        this.preparedData = data
+      },
+      handleDeleteFile () {
+        this.preparedData = null
       },
       handleFile (file) {
         try {
@@ -91,10 +121,7 @@
             if (isAllFields < 1) throw new Error('Can\'t find required field')
             else {
               // prepare data for send to api
-              // eslint-disable-next-line no-unused-vars
-              const data = self.prepareData(json)
-              // send to api
-              // this.$api.sendData(url, data)
+              self.prepareData(json)
             }
           }
           reader.readAsArrayBuffer(file)
