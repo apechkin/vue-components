@@ -14,8 +14,8 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/mixins.scss";
-  @import "../../assets/style.scss";
+  @import "../../../assets/mixins.scss";
+  @import "../../../assets/style.scss";
   .button {
     background-color: $blue_5;
     min-height: 32px;
