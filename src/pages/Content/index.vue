@@ -14,6 +14,8 @@
         currency="RUR"/>
     </div>
     <hr>
+    <card-tarif-side/>
+    <hr>
     <r-select
       :options="listOptions"
       v-model="selectedOption"
@@ -33,13 +35,13 @@
   import EdragInput from '~/containers/EDragInput/index.vue'
   import RSelect from '@/RSelect'
   import ETable from '~/containers/EFixedTable/index.vue'
-  import ExcelParser from '~/containers/EExcelParser/index.vue'
+  import CardTarifSide from '~/containers/CardTarifSide/index.vue'
   export default {
     components: {
       EdragInput,
       RSelect,
       ETable,
-      ExcelParser
+      CardTarifSide
     },
     data () {
       return {
