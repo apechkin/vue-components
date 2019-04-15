@@ -7,6 +7,10 @@ import RArea from './RArea/index.vue'
 import RButton from './Buttons/RButton/index.vue'
 import SvgButton from './Buttons/RSvgButton/index.vue'
 import BlinkButton from './Buttons/RBlinkButton/index.vue'
+import Card from './RCard/index.vue'
+import CardDesk from './RCardDesk/index.vue'
+import TarifSide from './SideBars/TarifSide/index.vue'
+import Perspective from './Perspective/index.vue'
 
 export default {
   install (Vue) {
@@ -19,5 +23,9 @@ export default {
     Vue.component('RButton', RButton)
     Vue.component('SvgButton', SvgButton)
     Vue.component('BlinkButton', BlinkButton)
+    Vue.component('Card', Card)
+    Vue.component('CardDesk', CardDesk)
+    Vue.component('TarifSide', TarifSide)
+    Vue.component('Perspective', Perspective)
   }
 }
