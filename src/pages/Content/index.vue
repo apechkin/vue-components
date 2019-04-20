@@ -14,8 +14,6 @@
         currency="RUR"/>
     </div>
     <hr>
-    <card-tarif-side/>
-    <hr>
     <r-select
       :options="listOptions"
       v-model="selectedOption"
