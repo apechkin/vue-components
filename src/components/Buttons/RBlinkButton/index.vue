@@ -1,7 +1,8 @@
 <template>
   <div class="blink-container">
     <div class="blink-button" :style="componentStyle">
-      <slot/>
+      <slot v-if="$slots.default"/>
+      <span v-else>Confirm</span>
     </div>
   </div>
 </template>
