@@ -1,6 +1,6 @@
 <template>
   <div>
-    <card-desk :componentStyle="cardDeskStyle">
+    <card-desk :componentStyle="cardDeskStyle" :isTarget="target">
       <card v-for="(card, index) in cards" :key="index">
         <template v-slot:header>
           <h4 class="my-0 font-weight-normal">{{card.header}}</h4>
